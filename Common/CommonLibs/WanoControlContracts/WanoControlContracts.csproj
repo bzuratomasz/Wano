@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D453E05-F5C4-4A40-B04A-B435D870F5B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WanoControlContracts</RootNamespace>
+    <AssemblyName>WanoControlContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContracts\ControllerConfigure\RequestControllerConfigure.cs" />
+    <Compile Include="DataContracts\RegisterCard\RequestRegisterCard.cs" />
+    <Compile Include="DataContracts\RegisterCard\ResponseRegisterCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContracts\ControllerConfigure\IControllerConfigure.cs" />
+    <Compile Include="ServiceContracts\IWanoService.cs" />
+    <Compile Include="ServiceContracts\RegisterCard\IRegisterCard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataContracts\ControllerPrivilege\" />
+    <Folder Include="DataContracts\ControllerRunInformation\" />
+    <Folder Include="DataContracts\ControllerSwipeOperate\" />
+    <Folder Include="DataContracts\ControllerSwipeRecord\" />
+    <Folder Include="DataContracts\ControllerTimeSegList\" />
+    <Folder Include="DataContracts\Controller\" />
+    <Folder Include="DataContracts\ControlTimeSeg\" />
+    <Folder Include="DataContracts\WatchingService\" />
+    <Folder Include="ServiceContracts\ControllerPrivilege\" />
+    <Folder Include="ServiceContracts\ControllerRunInformation\" />
+    <Folder Include="ServiceContracts\ControllerSwipeOperate\" />
+    <Folder Include="ServiceContracts\ControllerSwipeRecord\" />
+    <Folder Include="ServiceContracts\ControllerTimeSegList\" />
+    <Folder Include="ServiceContracts\Controller\" />
+    <Folder Include="ServiceContracts\ControlTimeSeg\" />
+    <Folder Include="ServiceContracts\WatchingService\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WanoControlCenter.View.UserControls.ControlPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="160">
+    <GroupBox Header="Set values">
+        <ScrollViewer>
+            <Grid>
+                <Button HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Height="37">
+                    <TextBlock>Synchronize the<LineBreak/>controller time</TextBlock>
+                </Button>
+                <Button HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="100">
+                    <TextBlock>Get the<LineBreak/>controller time</TextBlock>
+                </Button>
+                <Button x:Name="cmdOpen" x:FieldModifier="private" Margin="10,167,21,475" Background="White" Click="cmdOpen_Click" >
+                    <StackPanel>
+                        <Image Source="/Resources/door-icon.png"/>
+                    </StackPanel>
+                </Button>
+                <Label Content="Send signal!" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                <Label Content="And much more..." HorizontalAlignment="Left" Margin="10,556,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </ScrollViewer>
+    </GroupBox>
+</UserControl>

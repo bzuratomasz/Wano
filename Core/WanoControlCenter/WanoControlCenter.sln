@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanoControlCenter", "WanoControlCenter\WanoControlCenter.csproj", "{42504428-6674-4B54-8FDF-F71E51B98540}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A6C8926B-534D-4856-849F-5F43F810E5B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{71078CBF-5B25-4CCC-9ED9-DA2AEDDD6A1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{CA67819F-F2FB-4D51-B1D2-F5D5050CEE4C}"
+	ProjectSection(SolutionItems) = preProject
+		doc.txt = doc.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanoControlContracts", "..\..\Common\CommonLibs\WanoControlContracts\WanoControlContracts.csproj", "{7D453E05-F5C4-4A40-B04A-B435D870F5B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42504428-6674-4B54-8FDF-F71E51B98540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42504428-6674-4B54-8FDF-F71E51B98540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42504428-6674-4B54-8FDF-F71E51B98540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42504428-6674-4B54-8FDF-F71E51B98540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D453E05-F5C4-4A40-B04A-B435D870F5B7} = {71078CBF-5B25-4CCC-9ED9-DA2AEDDD6A1F}
+	EndGlobalSection
+EndGlobal

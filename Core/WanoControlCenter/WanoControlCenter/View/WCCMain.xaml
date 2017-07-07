@@ -1,0 +1,10 @@
+﻿<Window x:Class="WanoControlCenter.View.WCCMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="385" Width="350"
+        xmlns:myControls="clr-namespace:WanoControlCenter.View" ResizeMode="NoResize" Title="Wano Solutions" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" Icon="/WanoControlCenter;component/Resources/VGLOGO.png" SizeToContent="Height">
+    <Grid>
+        <Image x:Name="logo" HorizontalAlignment="Left" Width="180" Margin="75,10,0,0" VerticalAlignment="Top" Source="/WanoControlCenter;component/Resources/VGLOGObig.png"/>
+        <myControls:LoginControl Height="200" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,125,0,0" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="129,313,0,0" TextWrapping="Wrap" Text="Copyright by Wano Solutions, Designed by T.Bzura" VerticalAlignment="Top" Width="205" FontSize="9"/>
+    </Grid>
+</Window>
