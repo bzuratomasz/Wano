@@ -45,7 +45,7 @@ namespace WanoControlService.Repositories
                     try
                     {
                         Logger.Debug("UserActivityRepository - TimerTick()");
-                        TimerTick();
+                        OnNext();
                     }
                     catch (Exception err)
                     {
@@ -57,7 +57,7 @@ namespace WanoControlService.Repositories
             }
         }
 
-        private void TimerTick()
+        private void OnNext()
         {
             if (_activityRequestList.Count > 0)
             {
@@ -121,5 +121,6 @@ namespace WanoControlService.Repositories
                 _activityRequestList.Add(req);
             }
         }
+
     }
 }

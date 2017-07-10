@@ -49,7 +49,7 @@ namespace WanoControlService.Modules
                 .SingleInstance();
 
             builder
-                .RegisterType<RegisterCardService>()
+                .RegisterType<RegisterCardMainService>()
                 .As<IRegisterCardService>()
                 .SingleInstance()
                 .EnableInterfaceInterceptors()

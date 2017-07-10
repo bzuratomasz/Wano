@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCCDatabaseORM", "..\..\Common\CommonLibs\WCCDatabaseORM\WCCDatabaseORM.csproj", "{8ACFCDE1-6F50-4921-80B3-73B14D21A619}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C11AF3E6-0E37-4748-B1E9-1FFE83FCAE55}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCCInfrastructure", "..\..\Common\CommonLibs\WCCInfrastructure\WCCInfrastructure.csproj", "{4B903A50-1771-420E-9B70-484EAB64FDAB}"
 EndProject

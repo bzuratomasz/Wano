@@ -1,4 +1,5 @@
 ﻿using System;
+using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlContracts.ServiceContracts;
 using WCCInfrastructure.Services.RegisterCardService;
@@ -25,7 +26,7 @@ namespace WanoControlService.Contracts
             return _registerCard.SetExpiredDateForCard(cardId, expiredDate);
         }
 
-        public bool ConnectToController(WanoControlContracts.DataContracts.ControllerConfigure.RequestControllerConfigure controller)
+        public bool ConnectToController(RequestControllerConfigure controller)
         {
             throw new NotImplementedException();
         }

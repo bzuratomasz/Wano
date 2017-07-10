@@ -1,4 +1,5 @@
-﻿using WCCCommon.Models;
+﻿using System;
+using WCCCommon.Models;
 
 namespace WCCInfrastructure.Repositories
 {

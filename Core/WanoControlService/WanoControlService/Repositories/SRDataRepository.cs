@@ -5,8 +5,8 @@ using WanoControlService.Services.SRDataService;
 using WanoControlService.Services.SRDataService.Interfaces;
 using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
-using WCCInfrastructure.Repositories;
 using WCCInfrastructure.Configuration;
+using WanoControlService.Repositories.Interfaces;
 
 namespace WanoControlService.Repositories
 {
@@ -34,7 +34,7 @@ namespace WanoControlService.Repositories
                 try
                 {
                     Logger.Debug("SRDataRepository - SaveToDB()");
-                    SaveToDB(i);
+                    OnNext(i);
                 }
                 catch (Exception err)
                 {
@@ -43,24 +43,6 @@ namespace WanoControlService.Repositories
             },
                 e => OnError(e),
                 () => OnCompleted());
-        }
-
-        private void SaveToDB(SRDataService sr)
-        {
-            using (var context = new MainDbContext(_conf))
-            {
-                SRDataEntity result = new SRDataEntity()
-                {
-                    DeviceId = sr.Data.DeviceId,
-                    ErrorText = sr.Data.ErrorText,
-                    Frequency = sr.Data.Frequency,
-                    SendData = sr.Data.SendData,
-                    Status = sr.Data.Status
-                };
-
-                context.SRData.Add(result);
-                context.SaveChanges();
-            }
         }
 
         public void OnCompleted()
@@ -94,5 +76,24 @@ namespace WanoControlService.Repositories
 
             _disposed = true;
         }
+
+        public void OnNext(SRDataService sr)
+        {
+            using (var context = new MainDbContext(_conf))
+            {
+                SRDataEntity result = new SRDataEntity()
+                {
+                    DeviceId = sr.Data.DeviceId,
+                    ErrorText = sr.Data.ErrorText,
+                    Frequency = sr.Data.Frequency,
+                    SendData = sr.Data.SendData,
+                    Status = sr.Data.Status
+                };
+
+                context.SRData.Add(result);
+                context.SaveChanges();
+            }
+        }
+
     }
 }
