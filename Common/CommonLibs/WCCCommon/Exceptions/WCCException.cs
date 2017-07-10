@@ -21,6 +21,9 @@ namespace WCCCommon.Exceptions
                 String.Join(", ", invocation.Arguments.Select(JsonConvert.SerializeObject)));
 
             _logger.Debug(debugBefore);
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+
             Console.WriteLine(string.Format("Before: {0}", debugBefore));
 
             invocation.Proceed();
@@ -31,6 +34,8 @@ namespace WCCCommon.Exceptions
 
             _logger.Debug(debugAfter);
             Console.WriteLine(string.Format("After: {0}", debugAfter));
+
+            Console.ResetColor();
         }
     }
 }
