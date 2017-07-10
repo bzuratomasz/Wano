@@ -1,8 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Reactive.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Reactive.Subjects;
+using WanoControlService.Repositories;
 using WanoControlService.Services.SRDataService;
 using WCCCommon.Models;
+using WCCInfrastructure.Configuration;
 using WCCInfrastructure.Repositories;
 using WCCInfrastructure.Services.SRDataService;
 
@@ -66,9 +69,7 @@ namespace WanoControlService.Tests.Repositories
         {
             //Arrange
             var srDataService = new Mock<ISRDataService>();
-            var srDataRepository = new Mock<ISRDataRepository>();
-
-            var sendReceiveData = new Mock<SendReceiveData>();
+            var srRepository = new Mock<ISRDataRepository>();
 
             var subject = new Subject<SRData>();
             srDataService
@@ -76,10 +77,14 @@ namespace WanoControlService.Tests.Repositories
                 .Returns(subject);
 
             //Act
-            srDataService.Setup(x => x.SaveInteraction(sendReceiveData.Object));
+            srDataService.Setup(mock => mock.SRData.Subscribe(srRepository.Object));
+            srDataService.Setup(mock => mock.SaveInteraction(It.IsAny<SendReceiveData>()));
+
+            var scheduler = new TestScheduler();
+            scheduler.AdvanceBy(10);
 
             //Assert
-            srDataRepository.Verify(repo => repo.OnNext(It.IsAny<SRData>()), Times.Once);
+            srRepository.Verify(repo => repo.OnNext(new SRData(new SendReceiveData())), Times.Never);
         }
     }
 }

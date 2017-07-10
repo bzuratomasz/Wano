@@ -94,6 +94,7 @@ namespace WanoControlService.Repositories
                 context.SRData.Add(result);
                 context.SaveChanges();
             }
+
         }
 
     }

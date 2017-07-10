@@ -20,7 +20,6 @@ namespace WanoControlService.Tests.Services.RegisterCardService
             var cardRepository = new Mock<ICardsRepository>();
             var userActivityRepository = new Mock<IUserActivityRepository>();
             var srDataService = new Mock<ISRDataService>();
-            var srDataRepository = new Mock<ISRDataRepository>();
 
             var registerCardRequest = new RequestRegisterCard() 
             {
@@ -49,7 +48,6 @@ namespace WanoControlService.Tests.Services.RegisterCardService
             var cardRepository = new Mock<ICardsRepository>();
             var userActivityRepository = new Mock<IUserActivityRepository>();
             var srDataService = new Mock<ISRDataService>();
-            var srDataRepository = new Mock<ISRDataRepository>();
 
 
             var subject = new Subject<SRData>();
