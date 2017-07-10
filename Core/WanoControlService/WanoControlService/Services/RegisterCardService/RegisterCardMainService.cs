@@ -1,9 +1,9 @@
 ﻿using System;
 using WanoControlContracts.DataContracts.RegisterCard;
-using WanoControlService.Services.SRDataService.Interfaces;
 using WCCCommon.Models;
 using WCCInfrastructure.Repositories;
 using WCCInfrastructure.Services.RegisterCardService;
+using WCCInfrastructure.Services.SRDataService;
 
 namespace WanoControlService.Services.RegisterCardService
 {

@@ -2,11 +2,12 @@
 using System;
 using System.Reflection;
 using WanoControlService.Services.SRDataService;
-using WanoControlService.Services.SRDataService.Interfaces;
 using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
 using WCCInfrastructure.Configuration;
-using WanoControlService.Repositories.Interfaces;
+using WCCCommon.Models;
+using WCCInfrastructure.Repositories;
+using WCCInfrastructure.Services.SRDataService;
 
 namespace WanoControlService.Repositories
 {
@@ -77,7 +78,7 @@ namespace WanoControlService.Repositories
             _disposed = true;
         }
 
-        public void OnNext(SRDataService sr)
+        public void OnNext(SRData sr)
         {
             using (var context = new MainDbContext(_conf))
             {

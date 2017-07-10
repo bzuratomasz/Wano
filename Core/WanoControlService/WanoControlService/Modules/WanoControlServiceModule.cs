@@ -12,9 +12,9 @@ using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Models.Interfaces;
 using WanoControlContracts.ServiceContracts;
 using WanoControlService.Services.SRDataService;
-using WanoControlService.Services.SRDataService.Interfaces;
 using WCCInfrastructure.Services.RegisterCardService;
 using WCCInfrastructure.Configuration;
+using WCCInfrastructure.Services.SRDataService;
 
 namespace WanoControlService.Modules
 {

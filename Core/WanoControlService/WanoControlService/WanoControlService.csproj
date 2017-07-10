@@ -113,9 +113,7 @@
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="Contracts\WanoCCService.cs" />
     <Compile Include="Hosters\WorkflowServiceHostInitializer.cs" />
-    <Compile Include="Repositories\Interfaces\ISRDataRepository.cs" />
     <Compile Include="Repositories\SRDataRepository.cs" />
-    <Compile Include="Services\SRDataService\Interfaces\ISRDataService.cs" />
     <Compile Include="Services\SRDataService\SRDataService.cs" />
     <Compile Include="Services\UserActivityService\UserActivityTimer.cs" />
     <Compile Include="Modules\RepositoriesModule.cs" />

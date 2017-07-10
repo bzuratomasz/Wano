@@ -5,7 +5,6 @@ using WanoControlService.Repositories;
 using WCCCommon.Exceptions;
 using Autofac.Extras.DynamicProxy2;
 using WCCInfrastructure.Repositories;
-using WanoControlService.Repositories.Interfaces;
 
 namespace WanoControlService.Modules
 {

@@ -56,6 +56,7 @@
     <Compile Include="Exceptions\WCCException.cs" />
     <Compile Include="Models\ActivityRequest.cs" />
     <Compile Include="Models\SendReceiveData.cs" />
+    <Compile Include="Models\SRData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
