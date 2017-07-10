@@ -17,7 +17,7 @@ namespace WanoControlContracts.DataContracts.RegisterCard
           public bool Deleted { get; set; }
 
           [DataMember]
-          public string Password { get; set; }
+          public uint Password { get; set; }
 
           [DataMember]
           public DateTime EndTime { get; set; }

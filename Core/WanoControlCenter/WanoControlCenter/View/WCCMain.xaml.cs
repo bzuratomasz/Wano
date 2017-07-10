@@ -35,7 +35,7 @@ namespace WanoControlCenter.View
                 CardId = 1,
                 Deleted = false,
                 EndTime = DateTime.Now,
-                Password = "",
+                Password = 12345,
                 StartTime = DateTime.Now
             });
         }

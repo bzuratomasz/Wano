@@ -15,7 +15,7 @@ namespace WanoControlService.Repositories
             _conf = conf;
         }
 
-        public void AddCard(uint cardID, DateTime endDate, string pass)
+        public void AddCard(uint cardID, DateTime endDate, uint pass)
         {
             using (var context = new MainDbContext(_conf))
             {
@@ -24,7 +24,7 @@ namespace WanoControlService.Repositories
                     CardId = (int)cardID,
                     IsDeleted = false,
                     Password = pass,
-                    YmdStart = DateTime.Now,
+                    YmdStart = DateTime.UtcNow,
                     YmdEnd = endDate
                 });
 

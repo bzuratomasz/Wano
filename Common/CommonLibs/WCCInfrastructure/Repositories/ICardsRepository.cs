@@ -4,6 +4,6 @@ namespace WCCInfrastructure.Repositories
 {
     public interface ICardsRepository
     {
-        void AddCard(uint cardID, DateTime endDate, string pass);
+        void AddCard(uint cardID, DateTime endDate, uint pass);
     }
 }

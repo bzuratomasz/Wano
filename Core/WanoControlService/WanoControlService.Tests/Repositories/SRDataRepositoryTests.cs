@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using WanoControlService.Services.SRDataService.Interfaces;
 using System.Reactive.Subjects;
 using WanoControlService.Services.SRDataService;
 using WCCCommon.Models;
-using WanoControlService.Repositories.Interfaces;
+using WCCInfrastructure.Repositories;
+using WCCInfrastructure.Services.SRDataService;
 
 namespace WanoControlService.Tests.Repositories
 {
@@ -70,7 +70,7 @@ namespace WanoControlService.Tests.Repositories
 
             var sendReceiveData = new Mock<SendReceiveData>();
 
-            var subject = new Subject<SRDataService>();
+            var subject = new Subject<SRData>();
             srDataService
                 .Setup(x => x.SRData)
                 .Returns(subject);
@@ -79,7 +79,7 @@ namespace WanoControlService.Tests.Repositories
             srDataService.Setup(x => x.SaveInteraction(sendReceiveData.Object));
 
             //Assert
-            srDataRepository.Verify(repo => repo.OnNext(It.IsAny<SRDataService>()), Times.Never);
+            srDataRepository.Verify(repo => repo.OnNext(It.IsAny<SRData>()), Times.Once);
         }
     }
 }

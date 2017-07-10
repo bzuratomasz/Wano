@@ -15,5 +15,9 @@ namespace WanoControlContracts.ServiceContracts.ControllerConfigure
         [WebGet(ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
         bool ConnectToController(RequestControllerConfigure controller);
+
+        [WebGet(ResponseFormat = WebMessageFormat.Xml)]
+        [OperationContract]
+        void ResetToDefault();
     }
 }

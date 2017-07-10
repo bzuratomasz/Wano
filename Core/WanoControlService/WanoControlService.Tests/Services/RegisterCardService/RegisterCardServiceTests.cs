@@ -1,13 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using WCCInfrastructure.Repositories;
-using WanoControlService.Services.SRDataService.Interfaces;
 using WanoControlService.Services.RegisterCardService;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WCCCommon.Models;
 using WanoControlService.Services.SRDataService;
 using System.Reactive.Subjects;
-using WanoControlService.Repositories.Interfaces;
+using WCCInfrastructure.Services.SRDataService;
 
 namespace WanoControlService.Tests.Services.RegisterCardService
 {
@@ -29,7 +28,7 @@ namespace WanoControlService.Tests.Services.RegisterCardService
                 Deleted = false
             };
 
-            var subject = new Subject<SRDataService>();
+            var subject = new Subject<SRData>();
             srDataService
                 .Setup(x => x.SRData)
                 .Returns(subject);
@@ -53,7 +52,7 @@ namespace WanoControlService.Tests.Services.RegisterCardService
             var srDataRepository = new Mock<ISRDataRepository>();
 
 
-            var subject = new Subject<SRDataService>();
+            var subject = new Subject<SRData>();
             srDataService
                 .Setup(x => x.SRData)
                 .Returns(subject);

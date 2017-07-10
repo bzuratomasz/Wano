@@ -29,7 +29,7 @@ namespace WanoControlService.Services.RegisterCardService
 
             if (card.CardId > 0)
             {
-                _repository.AddCard(card.CardId, DateTime.MaxValue, "123");
+                _repository.AddCard(card.CardId, card.EndTime, card.Password);
 
                 Report(card);
 
@@ -43,13 +43,13 @@ namespace WanoControlService.Services.RegisterCardService
         {
             _activity.AddActivity(new ActivityRequest()
             {
-                Time = DateTime.Now,
+                Time = DateTime.UtcNow,
                 UserName = "admin",
                 IsVip = true,
                 ActivityText = string.Format("Adding card! Data: {0}, {1}, {2}",
                                             card.CardId,
-                                            DateTime.MaxValue,
-                                            "123")
+                                            card.EndTime,
+                                            card.Password)
             });
 
             _service.SaveInteraction(new SendReceiveData()

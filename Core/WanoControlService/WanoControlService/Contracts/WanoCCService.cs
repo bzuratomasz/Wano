@@ -2,6 +2,7 @@
 using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlContracts.ServiceContracts;
+using WCCInfrastructure.Services.ControllerService;
 using WCCInfrastructure.Services.RegisterCardService;
 
 namespace WanoControlService.Contracts
@@ -9,10 +10,12 @@ namespace WanoControlService.Contracts
     public class WanoCCService : IWanoService
     {
         private readonly IRegisterCardService _registerCard;
+        private readonly IControllerService _controllerService;
 
-        public WanoCCService(IRegisterCardService reg)
+        public WanoCCService(IRegisterCardService reg, IControllerService controllerService)
         {
             _registerCard = reg;
+            _controllerService = controllerService;
         }
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
@@ -28,7 +31,16 @@ namespace WanoControlService.Contracts
 
         public bool ConnectToController(RequestControllerConfigure controller)
         {
-            throw new NotImplementedException();
+            return _controllerService.ConnectToController(controller);
+        }
+
+
+        public void ResetToDefault()
+        {
+            if (_controllerService.Controller != null)
+            {
+                _controllerService.Controller.RestoreDefault();
+            }
         }
     }
 }

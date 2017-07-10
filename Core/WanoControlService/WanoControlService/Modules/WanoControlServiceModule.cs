@@ -15,6 +15,8 @@ using WanoControlService.Services.SRDataService;
 using WCCInfrastructure.Services.RegisterCardService;
 using WCCInfrastructure.Configuration;
 using WCCInfrastructure.Services.SRDataService;
+using WanoControlService.Services.ControllerService;
+using WCCInfrastructure.Services.ControllerService;
 
 namespace WanoControlService.Modules
 {
@@ -47,6 +49,13 @@ namespace WanoControlService.Modules
                 .RegisterType<WanoCCService>()
                 .As<IWanoService>()
                 .SingleInstance();
+
+            builder
+                .RegisterType<ControllerService>()
+                .As<IControllerService>()
+                .SingleInstance()
+                .EnableInterfaceInterceptors()
+                .InterceptedBy(typeof(WCCException));
 
             builder
                 .RegisterType<RegisterCardMainService>()

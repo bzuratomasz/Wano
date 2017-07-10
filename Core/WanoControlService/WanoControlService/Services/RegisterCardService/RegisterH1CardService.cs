@@ -10,8 +10,15 @@ namespace WanoControlService.Services.RegisterCardService
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
         {
-            var register = new MjRegisterCard();
-            register.CardID = card.CardId;
+            var register = new MjRegisterCard() 
+            {
+                CardID = card.CardId,
+                IsDeleted = card.Deleted,
+                Password = card.Password,
+                ymdEnd = card.EndTime,
+                ymdStart = card.StartTime
+            };
+
             return new ResponseRegisterCard() 
             {
                 Registered = true
