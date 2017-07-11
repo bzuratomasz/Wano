@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlContracts.ServiceContracts;
@@ -41,6 +42,12 @@ namespace WanoControlService.Contracts
             {
                 _controllerService.Controller.RestoreDefault();
             }
+        }
+
+
+        public List<RequestRegisterCard> GetCards()
+        {
+            return _registerCard.GetCards();
         }
     }
 }

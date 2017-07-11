@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WCCInfrastructure.Services.RegisterCardService;
 

@@ -11,13 +11,13 @@ namespace WanoControlContracts.DataContracts.RegisterCard
     public class RequestRegisterCard
     {
           [DataMember]
-          public uint CardId { get; set; }
+          public int CardId { get; set; }
 
           [DataMember]
           public bool Deleted { get; set; }
 
           [DataMember]
-          public uint Password { get; set; }
+          public int Password { get; set; }
 
           [DataMember]
           public DateTime EndTime { get; set; }

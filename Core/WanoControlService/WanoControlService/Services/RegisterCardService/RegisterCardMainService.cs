@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WCCCommon.Models;
 using WCCInfrastructure.Repositories;
@@ -63,6 +64,12 @@ namespace WanoControlService.Services.RegisterCardService
         public bool SetExpiredDateForCard(int cardId, DateTime expiredDate)
         {
             return _context.SetExpiredDateForCard(cardId, expiredDate);
+        }
+
+
+        public List<RequestRegisterCard> GetCards()
+        {
+            return _repository.GetCards();
         }
     }
 }

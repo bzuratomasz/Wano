@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WanoControlContracts.DataContracts.RegisterCard;
 using WCCDatabaseORM.Models.Interfaces;
 using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
@@ -15,9 +17,15 @@ namespace WanoControlService.Repositories
             _repo = repo;
         }
 
-        public void AddCard(uint cardID, DateTime endDate, uint pass)
+        public void AddCard(int cardID, DateTime endDate, int pass)
         {
             _repo.AddCard(cardID, endDate, pass);
+        }
+
+
+        public List<RequestRegisterCard> GetCards()
+        {
+            return _repo.GetCards();
         }
     }
 }

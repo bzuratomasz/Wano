@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WanoControlCenter.Model;
+using WanoControlCenter.View;
+using WanoControlCenter.View.UserControls;
 
 namespace WanoControlCenter.Bootstrappers
 {
@@ -15,6 +17,7 @@ namespace WanoControlCenter.Bootstrappers
             builder.RegisterType<WCCModel>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
+                  
         }
     }
 }

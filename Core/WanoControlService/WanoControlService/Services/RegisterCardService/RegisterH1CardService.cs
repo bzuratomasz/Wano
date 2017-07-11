@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WCCInfrastructure.Services.RegisterCardService;
 using WG3000_COMM.Core;
@@ -12,9 +13,9 @@ namespace WanoControlService.Services.RegisterCardService
         {
             var register = new MjRegisterCard() 
             {
-                CardID = card.CardId,
+                CardID = (uint)card.CardId,
                 IsDeleted = card.Deleted,
-                Password = card.Password,
+                Password = (uint)card.Password,
                 ymdEnd = card.EndTime,
                 ymdStart = card.StartTime
             };

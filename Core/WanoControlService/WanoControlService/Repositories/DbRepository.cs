@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WanoControlContracts.DataContracts.RegisterCard;
 using WCCCommon.Models;
 using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
@@ -48,21 +49,43 @@ namespace WanoControlService.Repositories
         }
 
 
-        public void AddCard(uint cardID, DateTime endDate, uint pass)
+        public void AddCard(int cardID, DateTime endDate, int pass)
         {
             using (var context = new MainDbContext(_conf))
             {
                 context.Cards.Add(new CardsEntity()
                 {
-                    CardId = (int)cardID,
+                    CardId = cardID,
                     IsDeleted = false,
-                    Password = (int)pass,
+                    Password = pass,
                     YmdStart = DateTime.UtcNow,
                     YmdEnd = endDate
                 });
 
                 context.SaveChanges();
             }
+        }
+
+
+        public List<RequestRegisterCard> GetCards()
+        {
+            List<RequestRegisterCard> resultCollection = null;
+
+            using (var context = new MainDbContext(_conf))
+            {
+                resultCollection = context.Cards.Select(x => new RequestRegisterCard()
+                {
+                    CardId = x.CardId,
+                    Deleted = x.IsDeleted,
+                    EndTime = x.YmdEnd,
+                    Password = 0,
+                    //TODO - change DB schema!
+                    StartTime = x.YmdStart
+                })
+                .ToList();
+            }
+
+            return resultCollection;
         }
     }
 }

@@ -20,10 +20,11 @@
                     </StackPanel>
                 </Button>
                 <Label Content="Send signal!" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                <Label Content="And much more..." HorizontalAlignment="Left" Margin="10,556,0,0" VerticalAlignment="Top"/>
                 <Button HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="100" Height="37" Click="Button_Click">
                     <TextBlock><Run Text="Add card"/><LineBreak/><Run Text="to registry!"/></TextBlock>
                 </Button>
+                <Label Content="Cards list!" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                <ListBox Name="CardsList" HorizontalAlignment="Left" Height="270" Margin="10,301,0,0" VerticalAlignment="Top" Width="100"/>
             </Grid>
         </ScrollViewer>
     </GroupBox>

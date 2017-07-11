@@ -1,9 +1,12 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +27,9 @@ namespace WanoControlCenter.View
     /// </summary>
     public partial class WCCConfiguration : Window, IWCCConfigurationPresenter
     {
+
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public WCCConfigurationPresenter _presenter { get; set; }
 
         public WCCConfiguration()
@@ -35,7 +41,7 @@ namespace WanoControlCenter.View
             _presenter = new WCCConfigurationPresenter(new Model.WCCModel(), this);
         }
 
-        private int _numValue = 200190063;
+        private int _numValue = 20;
 
         public int NumValue
         {
@@ -70,7 +76,7 @@ namespace WanoControlCenter.View
 
         #region port
 
-        private int _numValuePort = 60000;
+        private int _numValuePort = 6001;
 
         public int NumValuePort
         {
@@ -105,27 +111,58 @@ namespace WanoControlCenter.View
 
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var register = PrepareData();
+
+            await Task.Run(() =>
             {
-                _presenter.Register(new RequestControllerConfigure() 
+                try
                 {
-                    Ip = IPAddress.Parse(ipTextBox.Text),
-                    Port = int.Parse(txtNumPort.Text),
-                    Mask = IPAddress.Parse(maskTextBox.Text),
-                    Gateway = IPAddress.Parse(gatewayTextBox.Text)
-                });
-            }
-            catch (Exception) 
+                    if (Validate())
+                    {
+                        _presenter.Register(register);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.ErrorFormat("Error while saving Controller Configuration. Error message: {0}", ex);
+                }
+            });
+
+            OpenNextWindow();
+        }
+
+        /// <summary>
+        /// Prepare data to send via net to controller
+        /// </summary>
+        /// <returns></returns>
+        private RequestControllerConfigure PrepareData()
+        {
+            var register = new RequestControllerConfigure()
             {
+                Ip = IPAddress.Parse(ipTextBox.Text),
+                Port = _numValuePort,
+                Mask = IPAddress.Parse(maskTextBox.Text),
+                Gateway = IPAddress.Parse(gatewayTextBox.Text),
+                HolidayControl = _numValue,
+                PcIPAddr = pcIpTextBox.Text
+            };
+            return register;
+        }
 
-            }
-
+        private void OpenNextWindow()
+        {
             WCCSupervisor conf = new WCCSupervisor();
             conf.Show();
             var myWindow = Window.GetWindow(this);
             myWindow.Close();
+        }
+
+        private bool Validate()
+        {
+            //TODO Validate Input's
+            return true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

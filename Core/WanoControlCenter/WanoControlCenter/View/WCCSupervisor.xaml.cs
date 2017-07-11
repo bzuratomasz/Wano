@@ -12,18 +12,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WanoControlCenter.Configuration;
+using WanoControlCenter.Presenter;
+using WanoControlCenter.View.Interfaces;
+using WanoControlContracts.DataContracts.RegisterCard;
 
 namespace WanoControlCenter.View
 {
     /// <summary>
     /// Interaction logic for WCCSupervisor.xaml
     /// </summary>
-    public partial class WCCSupervisor : Window
+    public partial class WCCSupervisor : Window, IWCCSupervisorPresenter
     {
+
         private List<GroupBox> _groupBoxes = new List<GroupBox>();
+
+        public WCCSupervisorPresenter _presenter { get; set; }
+        public List<GroupBox> GetCollectionGB() 
+        {
+            return _groupBoxes;
+        }
+
 
         public WCCSupervisor()
         {
+            _presenter = new WCCSupervisorPresenter(new Model.WCCModel(), this);
+
             InitializeComponent();
             ReadConfiguration();
         }

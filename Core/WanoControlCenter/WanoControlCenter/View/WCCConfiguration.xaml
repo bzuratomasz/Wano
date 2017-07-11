@@ -15,10 +15,13 @@
                 <TextBox x:Name="maskTextBox" HorizontalAlignment="Left" Height="20" Margin="220,40,0,0" Text="255.255.255.0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
                 <TextBox x:Name="gatewayTextBox" HorizontalAlignment="Left" Height="20" Margin="115,40,0,0" Text="10.0.0.2" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
 
-                <GroupBox Header="SN:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="200" Height="65">
+                <TextBox x:Name="pcIpTextBox" HorizontalAlignment="Left" Height="20" Margin="10,106,0,0" Text="192.168.1.1" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                <Label Content="PC IP Address:" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
+
+                <GroupBox Header="Holiday Control:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="200" Height="65">
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="txtNumSN" x:FieldModifier="private" Height="20" Margin="5,5,0,5" Width="80" Text="200190063" TextAlignment="Right" TextChanged="txtNumSN_TextChanged" />
+                            <TextBox x:Name="txtNumSN" x:FieldModifier="private" Height="20" Margin="5,5,0,5" Width="80" Text="20" TextAlignment="Right" TextChanged="txtNumSN_TextChanged" />
                             <Button x:Name="cmdUpSN" x:FieldModifier="private" Margin="25,5,0,5" Width="30" Click="cmdUpSN_Click" Background="White">
                                 <StackPanel>
                                     <Image Source="../Resources/up.png"></Image>

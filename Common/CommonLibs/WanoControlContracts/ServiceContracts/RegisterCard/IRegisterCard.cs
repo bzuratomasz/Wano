@@ -20,5 +20,9 @@ namespace WanoControlContracts.ServiceContracts.RegisterCard
         [WebGet(ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
         bool SetExpiredDateForCard(int cardId, DateTime expiredDate);
+
+        [WebGet(ResponseFormat = WebMessageFormat.Xml)]
+        [OperationContract]
+        List<RequestRegisterCard> GetCards();
     }
 }

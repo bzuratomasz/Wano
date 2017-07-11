@@ -92,9 +92,11 @@
     <Compile Include="Presenter\ManageCardsPresenter.cs" />
     <Compile Include="Presenter\WCCConfigurationPresenter.cs" />
     <Compile Include="Presenter\WCCMainPresenter.cs" />
+    <Compile Include="Presenter\WCCSupervisorPresenter.cs" />
     <Compile Include="View\Interfaces\IManageCardsPresenter.cs" />
     <Compile Include="View\Interfaces\IWCCConfigurationPresenter.cs" />
     <Compile Include="View\Interfaces\IWCCMainPresenter.cs" />
+    <Compile Include="View\Interfaces\IWCCSupervisorPresenter.cs" />
     <Compile Include="View\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>

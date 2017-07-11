@@ -7,6 +7,7 @@ using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlContracts.ServiceContracts;
 using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.ServiceContracts.ControllerConfigure;
+using System.Collections.Generic;
 
 namespace WanoControlCenter.Model
 {
@@ -63,6 +64,28 @@ namespace WanoControlCenter.Model
                     ((ICommunicationObject)client).Abort();
                 }
             }
+        }
+
+        public List<RequestRegisterCard> GetCards()
+        {
+            List<RequestRegisterCard> result = new List<RequestRegisterCard>();
+            IRegisterCard client = null;
+
+            try
+            {
+                client = myChannelFactory.CreateChannel();
+                result = client.GetCards();
+                ((ICommunicationObject)client).Close();
+            }
+            catch
+            {
+                if (client != null)
+                {
+                    ((ICommunicationObject)client).Abort();
+                }
+            }
+
+            return result;
         }
     }
 }

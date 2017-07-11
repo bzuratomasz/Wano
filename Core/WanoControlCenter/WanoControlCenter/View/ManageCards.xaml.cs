@@ -31,16 +31,25 @@ namespace WanoControlCenter.View
             _presenter = new ManageCardsPresenter(new Model.WCCModel(), this);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var result = RegisterCard(new RequestRegisterCard()
+            var result = new RequestRegisterCard()
             {
-                CardId = 1,
-                Deleted = false,
-                EndTime = DateTime.Now,
-                Password = 12345,
-                StartTime = DateTime.Now
+                CardId = int.Parse(cardIdTxtBox.Text),
+                Deleted = TrueCB.IsChecked == true ? true : false,
+                EndTime = (DateTime)EndDate.SelectedDate,
+                Password = int.Parse(PasswordBox.Password.ToString()),
+                StartTime = (DateTime)StartDate.SelectedDate
+            };
+
+            await Task.Run(() =>
+            {
+                RegisterCard(result);
             });
+
+
+            var myWindow = Window.GetWindow(this);
+            myWindow.Close();
         }
 
         private ResponseRegisterCard RegisterCard(RequestRegisterCard card)
