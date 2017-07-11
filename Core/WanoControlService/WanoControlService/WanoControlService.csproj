@@ -113,6 +113,7 @@
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="Contracts\WanoCCService.cs" />
     <Compile Include="Hosters\WorkflowServiceHostInitializer.cs" />
+    <Compile Include="Repositories\DbRepository.cs" />
     <Compile Include="Repositories\SRDataRepository.cs" />
     <Compile Include="Services\SRDataService\SRDataService.cs" />
     <Compile Include="Services\UserActivityService\UserActivityTimer.cs" />

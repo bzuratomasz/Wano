@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\IPAddressConverter.cs" />
     <Compile Include="Exceptions\WCCException.cs" />
     <Compile Include="Models\ActivityRequest.cs" />
     <Compile Include="Models\SendReceiveData.cs" />

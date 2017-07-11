@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WCCCommon.Converters;
 
 namespace WCCCommon.Exceptions
 {
@@ -16,6 +17,11 @@ namespace WCCCommon.Exceptions
 
         public void Intercept(IInvocation invocation)
         {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Converters = new List<JsonConverter> { new IPAddressConverter() }
+            };
+
             var debugBefore = String.Format("Method: {0}, parameters:{1} ",
                 invocation.Method.Name,
                 String.Join(", ", invocation.Arguments.Select(JsonConvert.SerializeObject)));

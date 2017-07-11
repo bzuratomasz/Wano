@@ -29,20 +29,6 @@ namespace WanoControlCenter.View
         {
             InitializeComponent();
             _presenter = new WCCMainPresenter(new Model.WCCModel(), this);
-            //TEST
-            var result = RegisterCard(new RequestRegisterCard()
-            {
-                CardId = 1,
-                Deleted = false,
-                EndTime = DateTime.Now,
-                Password = 12345,
-                StartTime = DateTime.Now
-            });
-        }
-
-        public ResponseRegisterCard RegisterCard(RequestRegisterCard card) 
-        {
-            return _presenter.RegisterCard(card);
         }
     }
 }

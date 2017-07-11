@@ -15,7 +15,7 @@ namespace WCCDatabaseORM.Schemes.Main.Entities
 
         public bool IsDeleted { get; set; }
 
-        public uint Password { get; set; }
+        public int Password { get; set; }
 
         public DateTime YmdEnd { get; set; }
 

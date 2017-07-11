@@ -18,24 +18,22 @@ namespace WanoControlService.Modules
 
             builder
                 .RegisterType<CardsRepository>()
-                .As<ICardsRepository>()
-                .SingleInstance();
+                .As<ICardsRepository>();
 
             builder
                 .RegisterType<UserActivityRepository>()
-                .As<IUserActivityRepository>()
-                .AutoActivate()
-                .SingleInstance()
-                .EnableInterfaceInterceptors()
-                .InterceptedBy(typeof(WCCException));
+                .As<IUserActivityRepository>();
 
             builder
                 .RegisterType<SRDataRepository>()
-                .As<ISRDataRepository>()
-                .AutoActivate()
-                .SingleInstance()
+                .As<ISRDataRepository>();
+
+            builder
+                .RegisterType<DbRepository>()
+                .As<IDbRepository>()
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(typeof(WCCException));
+
         }
     }
 }

@@ -30,5 +30,11 @@ namespace WanoControlCenter.View.UserControls
             Loader conf = new Loader();
             conf.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ManageCards conf = new ManageCards();
+            conf.Show();
+        }
     }
 }

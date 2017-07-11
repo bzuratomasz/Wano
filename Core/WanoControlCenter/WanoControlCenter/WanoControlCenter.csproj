@@ -89,12 +89,17 @@
     <Compile Include="Configuration\ConfigurationContainer.cs" />
     <Compile Include="Configuration\Interfaces\IConfiguration.cs" />
     <Compile Include="Model\WCCModel.cs" />
+    <Compile Include="Presenter\ManageCardsPresenter.cs" />
     <Compile Include="Presenter\WCCConfigurationPresenter.cs" />
     <Compile Include="Presenter\WCCMainPresenter.cs" />
+    <Compile Include="View\Interfaces\IManageCardsPresenter.cs" />
     <Compile Include="View\Interfaces\IWCCConfigurationPresenter.cs" />
     <Compile Include="View\Interfaces\IWCCMainPresenter.cs" />
     <Compile Include="View\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageCards.xaml.cs">
+      <DependentUpon>ManageCards.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControls\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
@@ -147,6 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\Loader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageCards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

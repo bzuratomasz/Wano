@@ -4,6 +4,9 @@ using WanoControlCenter.Configuration;
 using System.ServiceModel;
 using WanoControlContracts.ServiceContracts.RegisterCard;
 using WanoControlContracts.DataContracts.RegisterCard;
+using WanoControlContracts.ServiceContracts;
+using WanoControlContracts.DataContracts.ControllerConfigure;
+using WanoControlContracts.ServiceContracts.ControllerConfigure;
 
 namespace WanoControlCenter.Model
 {
@@ -12,18 +15,18 @@ namespace WanoControlCenter.Model
 
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly BasicHttpBinding _myBinding = new BasicHttpBinding();
+        private readonly EndpointAddress _myEndpoint = new EndpointAddress(ConfigurationContainer.Instance.Url);
+        private readonly ChannelFactory<IWanoService> myChannelFactory;
+
         public WCCModel()
         {
-
+            myChannelFactory = new ChannelFactory<IWanoService>(_myBinding, _myEndpoint);
         }
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
         {
-            var myBinding = new BasicHttpBinding();
-            var myEndpoint = new EndpointAddress(ConfigurationContainer.Instance.Url);
-            var myChannelFactory = new ChannelFactory<IRegisterCard>(myBinding, myEndpoint);
             ResponseRegisterCard result = new ResponseRegisterCard();
-
             IRegisterCard client = null;
 
             try
@@ -43,9 +46,23 @@ namespace WanoControlCenter.Model
             return result;
         }
 
-        public void Register() 
+        public void Register(RequestControllerConfigure controller) 
         {
+            IControllerConfigure client = null;
 
+            try
+            {
+                client = myChannelFactory.CreateChannel();
+                client.ConnectToController(controller);
+                ((ICommunicationObject)client).Close();
+            }
+            catch
+            {
+                if (client != null)
+                {
+                    ((ICommunicationObject)client).Abort();
+                }
+            }
         }
     }
 }

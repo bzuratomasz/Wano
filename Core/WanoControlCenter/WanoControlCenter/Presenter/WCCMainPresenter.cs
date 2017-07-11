@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WanoControlCenter.Model;
+﻿using WanoControlCenter.Model;
 using WanoControlCenter.View.Interfaces;
-using WanoControlContracts.DataContracts.RegisterCard;
 
 namespace WanoControlCenter.Presenter
 {
@@ -20,11 +14,6 @@ namespace WanoControlCenter.Presenter
             this._model = model;
 
             this._view._presenter = this;
-        }
-
-        public ResponseRegisterCard RegisterCard(RequestRegisterCard card) 
-        {
-            return _model.RegisterCard(card);
         }
     }
 }

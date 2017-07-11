@@ -65,26 +65,48 @@ namespace WanoControlService.Tests.Repositories
         #endregion
 
         [TestMethod]
-        public void WanoControlService_SRDataRepository_CatchElement()
+        public void WanoControlService_SRDataRepository_CatchOneElement()
         {
             //Arrange
-            var srDataService = new Mock<ISRDataService>();
-            var srRepository = new Mock<ISRDataRepository>();
+            var srService = new Mock<ISRDataService>();
+            var dbRepository = new Mock<IDbRepository>();
+
+            var result = new SRData(new SendReceiveData());
 
             var subject = new Subject<SRData>();
-            srDataService
+            srService
                 .Setup(x => x.SRData)
                 .Returns(subject);
 
             //Act
-            srDataService.Setup(mock => mock.SRData.Subscribe(srRepository.Object));
-            srDataService.Setup(mock => mock.SaveInteraction(It.IsAny<SendReceiveData>()));
-
-            var scheduler = new TestScheduler();
-            scheduler.AdvanceBy(10);
+            SRDataRepository repo = new SRDataRepository(srService.Object, dbRepository.Object);
+            repo.OnNext(result);
 
             //Assert
-            srRepository.Verify(repo => repo.OnNext(new SRData(new SendReceiveData())), Times.Never);
+            dbRepository.Verify(re => re.AddSRData(result), Times.Once);
+        }
+
+        [TestMethod]
+        public void WanoControlService_SRDataRepository_CatchTwoElement()
+        {
+            //Arrange
+            var srService = new Mock<ISRDataService>();
+            var dbRepository = new Mock<IDbRepository>();
+
+            var result = new SRData(new SendReceiveData());
+
+            var subject = new Subject<SRData>();
+            srService
+                .Setup(x => x.SRData)
+                .Returns(subject);
+
+            //Act
+            SRDataRepository repo = new SRDataRepository(srService.Object, dbRepository.Object);
+            repo.OnNext(result);
+            repo.OnNext(result);
+
+            //Assert
+            dbRepository.Verify(re => re.AddSRData(result), Times.Exactly(2));
         }
     }
 }

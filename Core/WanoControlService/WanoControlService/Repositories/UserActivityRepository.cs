@@ -22,12 +22,12 @@ namespace WanoControlService.Repositories
         private readonly object _syncLocker = new object();
         private bool _disposed = false;
 
-        private readonly IConfiguration _conf;
+        private readonly IDbRepository _repo;
 
-        public UserActivityRepository(IUserActivityTimer ticker, IConfiguration conf)
+        public UserActivityRepository(IUserActivityTimer ticker, IDbRepository repo)
         {
             _ticker = ticker;
-            _conf = conf;
+            _repo = repo;
             Init();
         }
 
@@ -70,11 +70,8 @@ namespace WanoControlService.Repositories
 
                 }).ToList();
 
-                using (var context = new MainDbContext(_conf))
-                {
-                    context.Activity.AddRange(result);
-                    context.SaveChanges();
-                }
+                _repo.AddUserActivity(result);
+
                 lock (_syncLocker)
                 {
                     _activityRequestList.Clear();

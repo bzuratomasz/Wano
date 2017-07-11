@@ -4,13 +4,18 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         Title="WCCConfiguration" Height="380" Width="500" ResizeMode="NoResize" SizeToContent="Height" Icon="/WanoControlCenter;component/Resources/VGLOGO.png" WindowStartupLocation="CenterOwner">
     <Grid>
-        <Image gif:ImageBehavior.AnimatedSource="../Resources/conf.gif" Height="200" Width="200" Margin="282,10,10,139"/>
+        <Image gif:ImageBehavior.AnimatedSource="../Resources/conf.gif" Margin="353,11,11,220"/>
         <GroupBox Header="Konfiguracja" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="320" Width="470">
             <Grid>
                 <Label Content="IP:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" Text="192.168.1.1" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Gateway:" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Mask:" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top"/>
+                
+                <TextBox x:Name="ipTextBox" HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" Text="192.168.1.1" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                <TextBox x:Name="maskTextBox" HorizontalAlignment="Left" Height="20" Margin="220,40,0,0" Text="255.255.255.0" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                <TextBox x:Name="gatewayTextBox" HorizontalAlignment="Left" Height="20" Margin="115,40,0,0" Text="10.0.0.2" TextAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
 
-                <GroupBox Header="SN:" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="200" Height="65">
+                <GroupBox Header="SN:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="200" Height="65">
                     <Grid>
                         <StackPanel Orientation="Horizontal">
                             <TextBox x:Name="txtNumSN" x:FieldModifier="private" Height="20" Margin="5,5,0,5" Width="80" Text="200190063" TextAlignment="Right" TextChanged="txtNumSN_TextChanged" />
@@ -27,10 +32,10 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Port:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="200" Height="65">
+                <GroupBox Header="Port:" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" Width="200" Height="65">
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="txtNumPort" x:FieldModifier="private" Height="20" Margin="5,5,0,5" Width="80" Text="60000" TextAlignment="Right" TextChanged="txtNumPort_TextChanged" />
+                            <TextBox x:Name="txtNumPort" x:FieldModifier="private" Height="20" Margin="5,5,0,5" Width="80" Text="6100" TextAlignment="Right" TextChanged="txtNumPort_TextChanged" />
                             <Button x:Name="cmdUpPort" x:FieldModifier="private" Margin="25,5,0,5" Width="30" Click="cmdUpPort_Click" Background="White">
                                 <StackPanel>
                                     <Image Source="../Resources/up.png"></Image>

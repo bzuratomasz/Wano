@@ -18,13 +18,13 @@ namespace WanoControlService.Repositories
         private readonly ISRDataService _service;
         private bool _disposed = false;
         private IDisposable _handle;
+        private IDbRepository _repository;
 
-        private readonly IConfiguration _conf;
 
-        public SRDataRepository(ISRDataService service, IConfiguration conf)
+        public SRDataRepository(ISRDataService service, IDbRepository repository)
         {
             _service = service;
-            _conf = conf;
+            _repository = repository;
             Init();
         }
 
@@ -80,21 +80,7 @@ namespace WanoControlService.Repositories
 
         public void OnNext(SRData sr)
         {
-            using (var context = new MainDbContext(_conf))
-            {
-                SRDataEntity result = new SRDataEntity()
-                {
-                    DeviceId = sr.Data.DeviceId,
-                    ErrorText = sr.Data.ErrorText,
-                    Frequency = sr.Data.Frequency,
-                    SendData = sr.Data.SendData,
-                    Status = sr.Data.Status
-                };
-
-                context.SRData.Add(result);
-                context.SaveChanges();
-            }
-
+            _repository.AddSRData(sr);
         }
 
     }

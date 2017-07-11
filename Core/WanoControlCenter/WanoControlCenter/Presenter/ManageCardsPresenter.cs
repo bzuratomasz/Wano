@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using WanoControlCenter.Model;
 using WanoControlCenter.View.Interfaces;
-using WanoControlContracts.DataContracts.ControllerConfigure;
+using WanoControlContracts.DataContracts.RegisterCard;
 
 namespace WanoControlCenter.Presenter
 {
-    public class WCCConfigurationPresenter
+    public class ManageCardsPresenter
     {
-        private IWCCConfigurationPresenter _view;
+        private IManageCardsPresenter _view;
         private WCCModel _model;
 
-        public WCCConfigurationPresenter(WCCModel model, IWCCConfigurationPresenter view)
+        public ManageCardsPresenter(WCCModel model, IManageCardsPresenter view)
         {
             this._view = view;
             this._model = model;
@@ -22,9 +22,9 @@ namespace WanoControlCenter.Presenter
             this._view._presenter = this;
         }
 
-        public void Register(RequestControllerConfigure conf) 
+        public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
         {
-            _model.Register(conf);
+            return _model.RegisterCard(card);
         }
     }
 }

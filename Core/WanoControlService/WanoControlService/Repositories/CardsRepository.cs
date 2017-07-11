@@ -8,28 +8,16 @@ namespace WanoControlService.Repositories
 {
     public class CardsRepository : ICardsRepository
     {
-        private readonly IDbConfiguration _conf;
+        private readonly IDbRepository _repo;
 
-        public CardsRepository(IDbConfiguration conf)
+        public CardsRepository(IDbRepository repo)
         {
-            _conf = conf;
+            _repo = repo;
         }
 
         public void AddCard(uint cardID, DateTime endDate, uint pass)
         {
-            using (var context = new MainDbContext(_conf))
-            {
-                context.Cards.Add(new CardsEntity()
-                {
-                    CardId = (int)cardID,
-                    IsDeleted = false,
-                    Password = pass,
-                    YmdStart = DateTime.UtcNow,
-                    YmdEnd = endDate
-                });
-
-                context.SaveChanges();
-            }
+            _repo.AddCard(cardID, endDate, pass);
         }
     }
 }

@@ -1,0 +1,9 @@
+﻿<Window x:Class="WanoControlCenter.View.ManageCards"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ManageCards" Height="300" Width="300">
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="45" Click="Button_Click"/>
+
+    </Grid>
+</Window>

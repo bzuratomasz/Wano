@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WanoControlCenter.Presenter;
 using WanoControlCenter.View.Interfaces;
+using WanoControlContracts.DataContracts.ControllerConfigure;
 
 namespace WanoControlCenter.View
 {
@@ -107,7 +109,13 @@ namespace WanoControlCenter.View
         {
             try
             {
-                _presenter.Register();
+                _presenter.Register(new RequestControllerConfigure() 
+                {
+                    Ip = IPAddress.Parse(ipTextBox.Text),
+                    Port = int.Parse(txtNumPort.Text),
+                    Mask = IPAddress.Parse(maskTextBox.Text),
+                    Gateway = IPAddress.Parse(gatewayTextBox.Text)
+                });
             }
             catch (Exception) 
             {
