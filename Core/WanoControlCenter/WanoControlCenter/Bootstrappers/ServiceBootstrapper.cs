@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WanoControlCenter.Model;
-using WanoControlCenter.View;
-using WanoControlCenter.View.UserControls;
+using WanoControlCenter.Models;
 
 namespace WanoControlCenter.Bootstrappers
 {

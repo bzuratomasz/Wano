@@ -5,6 +5,7 @@ using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlContracts.ServiceContracts;
 using WCCInfrastructure.Services.ControllerService;
 using WCCInfrastructure.Services.RegisterCardService;
+using System.Linq;
 
 namespace WanoControlService.Contracts
 {
@@ -47,7 +48,7 @@ namespace WanoControlService.Contracts
 
         public List<RequestRegisterCard> GetCards()
         {
-            return _registerCard.GetCards();
+            return _registerCard.GetCards().ToList();
         }
     }
 }

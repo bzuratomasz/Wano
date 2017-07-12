@@ -13,7 +13,7 @@ namespace WCCInfrastructure.Repositories
     {
         void AddSRData(SRData data);
         void AddUserActivity(List<ActivityEntity> list);
-        void AddCard(int cardID, DateTime endDate, int pass);
-        List<RequestRegisterCard> GetCards();
+        void AddCard(RequestRegisterCard card);
+        IEnumerable<RequestRegisterCard> GetCards();
     }
 }

@@ -43,23 +43,23 @@ namespace WanoControlService.Repositories
         {
             using (var context = new MainDbContext(_conf))
             {
-                context.Activity.AddRange(list);
+                context.Activity.AddRange(list.ToList());
                 context.SaveChanges();
             }
         }
 
 
-        public void AddCard(int cardID, DateTime endDate, int pass)
+        public void AddCard(RequestRegisterCard card)
         {
             using (var context = new MainDbContext(_conf))
             {
                 context.Cards.Add(new CardsEntity()
                 {
-                    CardId = cardID,
-                    IsDeleted = false,
-                    Password = pass,
-                    YmdStart = DateTime.UtcNow,
-                    YmdEnd = endDate
+                    CardId = card.CardId,
+                    IsDeleted = card.Deleted,
+                    Password = card.Password,
+                    YmdStart = card.StartTime,
+                    YmdEnd = card.EndTime
                 });
 
                 context.SaveChanges();
@@ -67,9 +67,9 @@ namespace WanoControlService.Repositories
         }
 
 
-        public List<RequestRegisterCard> GetCards()
+        public IEnumerable<RequestRegisterCard> GetCards()
         {
-            List<RequestRegisterCard> resultCollection = null;
+            IEnumerable<RequestRegisterCard> resultCollection = null;
 
             using (var context = new MainDbContext(_conf))
             {
@@ -84,7 +84,7 @@ namespace WanoControlService.Repositories
                 .ToList();
             }
 
-            return resultCollection;
+            return resultCollection.AsEnumerable();
         }
     }
 }

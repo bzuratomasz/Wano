@@ -30,7 +30,7 @@ namespace WanoControlService.Services.RegisterCardService
 
             if (card.CardId > 0)
             {
-                _repository.AddCard(card.CardId, card.EndTime, card.Password);
+                _repository.AddCard(card);
 
                 Report(card);
 
@@ -67,7 +67,7 @@ namespace WanoControlService.Services.RegisterCardService
         }
 
 
-        public List<RequestRegisterCard> GetCards()
+        public IEnumerable<RequestRegisterCard> GetCards()
         {
             return _repository.GetCards();
         }

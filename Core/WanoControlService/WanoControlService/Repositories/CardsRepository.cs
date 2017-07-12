@@ -17,13 +17,13 @@ namespace WanoControlService.Repositories
             _repo = repo;
         }
 
-        public void AddCard(int cardID, DateTime endDate, int pass)
+        public void AddCard(RequestRegisterCard card)
         {
-            _repo.AddCard(cardID, endDate, pass);
+            _repo.AddCard(card);
         }
 
 
-        public List<RequestRegisterCard> GetCards()
+        public IEnumerable<RequestRegisterCard> GetCards()
         {
             return _repo.GetCards();
         }

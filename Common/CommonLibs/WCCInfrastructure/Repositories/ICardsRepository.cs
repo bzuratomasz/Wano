@@ -6,7 +6,7 @@ namespace WCCInfrastructure.Repositories
 {
     public interface ICardsRepository
     {
-        void AddCard(int cardID, DateTime endDate, int pass);
-        List<RequestRegisterCard> GetCards();
+        void AddCard(RequestRegisterCard card);
+        IEnumerable<RequestRegisterCard> GetCards();
     }
 }

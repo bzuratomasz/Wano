@@ -8,6 +8,6 @@ namespace WCCInfrastructure.Services.RegisterCardService
     {
         ResponseRegisterCard RegisterCard(RequestRegisterCard card);
         bool SetExpiredDateForCard(int cardId, DateTime expiredDate);
-        List<RequestRegisterCard> GetCards();
+        IEnumerable<RequestRegisterCard> GetCards();
     }
 }

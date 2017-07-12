@@ -16,6 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{CA67819F-F2F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanoControlContracts", "..\..\Common\CommonLibs\WanoControlContracts\WanoControlContracts.csproj", "{7D453E05-F5C4-4A40-B04A-B435D870F5B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanoControlCenter.Tests", "WanoControlCenter.Tests\WanoControlCenter.Tests.csproj", "{2B55C7F9-77B7-4590-9198-14AB11079208}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0A8A2126-0ABC-49CD-90C7-E04117437B6E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +37,10 @@ Global
 		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D453E05-F5C4-4A40-B04A-B435D870F5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B55C7F9-77B7-4590-9198-14AB11079208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B55C7F9-77B7-4590-9198-14AB11079208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B55C7F9-77B7-4590-9198-14AB11079208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B55C7F9-77B7-4590-9198-14AB11079208}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
