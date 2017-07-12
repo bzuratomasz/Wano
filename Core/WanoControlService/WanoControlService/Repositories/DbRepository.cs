@@ -1,6 +1,9 @@
-﻿using System;
+﻿using log4net;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WanoControlContracts.DataContracts.RegisterCard;
@@ -14,6 +17,9 @@ namespace WanoControlService.Repositories
 {
     public class DbRepository : IDbRepository
     {
+
+        private static readonly ILog Logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly IConfiguration _conf;
 
         public DbRepository(IConfiguration conf)
@@ -79,12 +85,38 @@ namespace WanoControlService.Repositories
                     Deleted = x.IsDeleted,
                     EndTime = x.YmdEnd,
                     Password = x.Password,
-                    StartTime = x.YmdStart
+                    StartTime = x.YmdStart,
+                    Permissions = x.Permissions
                 })
                 .ToList();
             }
 
             return resultCollection.AsEnumerable();
+        }
+
+
+        public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
+        {
+            var result = false;
+
+            using (var context = new MainDbContext(_conf))
+            {
+                try
+                {
+                    var cur = context.Cards.Where(x => x.CardId == cardId).SingleOrDefault();
+                    context.Cards.Attach(cur);
+                    var entry = context.Entry(cur);
+                    entry.Property(e => e.Permissions).CurrentValue = JsonConvert.SerializeObject(Permissions);
+                    context.SaveChanges();
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    Logger.ErrorFormat("Error while update cc_cards. Error text: {0}", ex);
+                }
+            }
+
+            return result;
         }
     }
 }

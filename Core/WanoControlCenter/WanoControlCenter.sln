@@ -20,8 +20,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanoControlCenter.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0A8A2126-0ABC-49CD-90C7-E04117437B6E}"
 	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCCCommon", "..\..\Common\CommonLibs\WCCCommon\WCCCommon.csproj", "{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,11 +46,16 @@ Global
 		{2B55C7F9-77B7-4590-9198-14AB11079208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B55C7F9-77B7-4590-9198-14AB11079208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B55C7F9-77B7-4590-9198-14AB11079208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7D453E05-F5C4-4A40-B04A-B435D870F5B7} = {71078CBF-5B25-4CCC-9ED9-DA2AEDDD6A1F}
+		{37F6F6E5-E7CF-4DFF-A6C4-82750BBC660D} = {71078CBF-5B25-4CCC-9ED9-DA2AEDDD6A1F}
 	EndGlobalSection
 EndGlobal

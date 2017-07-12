@@ -10,8 +10,10 @@ using WanoControlCenter.Presenters;
 using WanoControlCenter.Interfaces;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlCenter.Views;
-using System.Reactive.Subjects;
-using System.Reactive.Linq;
+using System.Windows.Input;
+using WanoControlCenter.Controls;
+using Newtonsoft.Json;
+using WCCCommon.Models;
 
 namespace WanoControlCenter.UserControls
 {
@@ -20,16 +22,24 @@ namespace WanoControlCenter.UserControls
     /// </summary>
     public partial class ControlPanel : UserControl, IWCCSupervisorPresenter, IDisposable
     {
-
+        //TODO - Refactor this class!
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private IDisposable _handle;
         private List<RequestRegisterCard> _cards = new List<RequestRegisterCard>();
         private ManageCards _conf = new ManageCards();
         private bool _showed = false;
-        private List<ListBoxItem> _buffer;
+        private List<ListBoxItemCustom> _buffer;
 
         public WCCSupervisorPresenter _presenter { get; set; }
 
+        public delegate void ControlPanelEventDelegate(ListBoxItemCustom item, bool reading);
+        public static event ControlPanelEventDelegate ControlPanelEvent;
+
+        public void Write(ListBoxItemCustom item, bool reading)
+        {
+            if (ControlPanelEvent != null)
+                ControlPanelEvent(item, reading);
+        }
 
         public ControlPanel()
         {
@@ -67,20 +77,24 @@ namespace WanoControlCenter.UserControls
 
         private void BindList()
         {
+
             foreach (var item in _cards)
             {
-                ListBoxItem control = new ListBoxItem()
+                ListBoxItemCustom control = new ListBoxItemCustom()
                 {
                     ToolTip = string.Format("Start time: {0}, End time: {1}, Is deleted: {2}",
                     item.StartTime,
                     item.EndTime,
                     item.Deleted),
-                    Content = string.Format("CardId: {0}", item.CardId)
+                    Content = string.Format("CardId: {0}", item.CardId),
+                    cardId = item.CardId,
+                    Stats = item.Permissions == null ? null : JsonConvert.DeserializeObject<List<List<Status>>>(item.Permissions)
+
                 };
                 CardsList.Items.Add(control);
             }
 
-            _buffer = CardsList.Items.Cast<ListBoxItem>().ToList();
+            _buffer = CardsList.Items.Cast<ListBoxItemCustom>().ToList();
 
             spin.Visibility = System.Windows.Visibility.Hidden;
         }
@@ -88,6 +102,12 @@ namespace WanoControlCenter.UserControls
         private void cmdOpen_Click(object sender, RoutedEventArgs e)
         {
             Loader conf = new Loader();
+
+            var result = (ListBoxItemCustom)CardsList.SelectedItem;
+            ControlPanelEvent(result, false);
+
+            InitList();
+
             conf.Show();
         }
 
@@ -133,9 +153,9 @@ namespace WanoControlCenter.UserControls
             return template.Contains(curr);
         }
 
-        private void CardsList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CardsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            ControlPanelEvent((ListBoxItemCustom)CardsList.SelectedItem, true);
         }
     }
 }

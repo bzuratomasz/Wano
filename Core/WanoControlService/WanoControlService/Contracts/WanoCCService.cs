@@ -6,6 +6,7 @@ using WanoControlContracts.ServiceContracts;
 using WCCInfrastructure.Services.ControllerService;
 using WCCInfrastructure.Services.RegisterCardService;
 using System.Linq;
+using WCCCommon.Models;
 
 namespace WanoControlService.Contracts
 {
@@ -49,6 +50,12 @@ namespace WanoControlService.Contracts
         public List<RequestRegisterCard> GetCards()
         {
             return _registerCard.GetCards().ToList();
+        }
+
+
+        public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
+        {
+            return _registerCard.UpdateCardsPermissions(Permissions, cardId);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WanoControlContracts.DataContracts;
 using WanoControlContracts.DataContracts.RegisterCard;
+using WCCCommon.Models;
 
 namespace WanoControlContracts.ServiceContracts.RegisterCard
 {
@@ -24,5 +25,9 @@ namespace WanoControlContracts.ServiceContracts.RegisterCard
         [WebGet(ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
         List<RequestRegisterCard> GetCards();
+
+        [WebGet(ResponseFormat = WebMessageFormat.Xml)]
+        [OperationContract]
+        bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId);
     }
 }

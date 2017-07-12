@@ -15,5 +15,6 @@ namespace WCCInfrastructure.Repositories
         void AddUserActivity(List<ActivityEntity> list);
         void AddCard(RequestRegisterCard card);
         IEnumerable<RequestRegisterCard> GetCards();
+        bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId);
     }
 }

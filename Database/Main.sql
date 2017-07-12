@@ -31,6 +31,7 @@ CREATE TABLE wano_main.w_cards
   "c_password" integer,
   c_end date,
   c_start date,
+  c_permissions text,
   CONSTRAINT w_cards_pkey PRIMARY KEY (c_id)
 )
 WITH (

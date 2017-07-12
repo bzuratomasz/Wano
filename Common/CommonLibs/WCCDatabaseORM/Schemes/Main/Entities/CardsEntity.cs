@@ -20,5 +20,7 @@ namespace WCCDatabaseORM.Schemes.Main.Entities
         public DateTime YmdEnd { get; set; }
 
         public DateTime YmdStart { get; set; }
+
+        public string Permissions { get; set; }
     }
 }

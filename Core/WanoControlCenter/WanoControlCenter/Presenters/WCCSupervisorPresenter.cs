@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using WanoControlCenter.Models;
 using WanoControlCenter.Interfaces;
 using WanoControlContracts.DataContracts.RegisterCard;
+using WCCCommon.Models;
 
 namespace WanoControlCenter.Presenters
 {
@@ -26,6 +27,11 @@ namespace WanoControlCenter.Presenters
         public List<RequestRegisterCard> GetCards()
         {
             return _model.GetCards();
+        }
+
+        public bool UpdateCardsPermissions(List<List<Status>> permissions, int cardId)
+        {
+            return _model.UpdateCardsPermissions(permissions, cardId);
         }
     }
 }

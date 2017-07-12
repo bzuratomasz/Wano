@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WanoControlContracts.DataContracts.RegisterCard;
+using WCCCommon.Models;
 using WCCDatabaseORM.Models.Interfaces;
 using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
@@ -26,6 +27,12 @@ namespace WanoControlService.Repositories
         public IEnumerable<RequestRegisterCard> GetCards()
         {
             return _repo.GetCards();
+        }
+
+
+        public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
+        {
+            return _repo.UpdateCardsPermissions(Permissions, cardId);
         }
     }
 }

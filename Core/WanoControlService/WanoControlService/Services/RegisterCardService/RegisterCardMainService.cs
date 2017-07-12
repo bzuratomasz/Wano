@@ -71,5 +71,11 @@ namespace WanoControlService.Services.RegisterCardService
         {
             return _repository.GetCards();
         }
+
+
+        public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
+        {
+            return _repository.UpdateCardsPermissions(Permissions, cardId);
+        }
     }
 }

@@ -68,6 +68,12 @@
     <Folder Include="ServiceContracts\ControlTimeSeg\" />
     <Folder Include="ServiceContracts\WatchingService\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCCCommon\WCCCommon.csproj">
+      <Project>{37f6f6e5-e7cf-4dff-a6c4-82750bbc660d}</Project>
+      <Name>WCCCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -47,6 +47,9 @@ namespace WCCDatabaseORM.Schemes.Main.Mapping
             this.Property(assigment => assigment.YmdStart)
                 .HasColumnName("c_start");
 
+            this.Property(assigment => assigment.Permissions)
+                .HasColumnName("c_permissions");
+
             #endregion
         }
     }

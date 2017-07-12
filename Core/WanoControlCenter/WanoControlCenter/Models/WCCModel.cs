@@ -8,6 +8,7 @@ using WanoControlContracts.ServiceContracts;
 using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.ServiceContracts.ControllerConfigure;
 using System.Collections.Generic;
+using WCCCommon.Models;
 
 namespace WanoControlCenter.Models
 {
@@ -75,6 +76,28 @@ namespace WanoControlCenter.Models
             {
                 client = myChannelFactory.CreateChannel();
                 result = client.GetCards();
+                ((ICommunicationObject)client).Close();
+            }
+            catch
+            {
+                if (client != null)
+                {
+                    ((ICommunicationObject)client).Abort();
+                }
+            }
+
+            return result;
+        }
+
+        public bool UpdateCardsPermissions(List<List<Status>> permissions, int cardId)
+        {
+            IRegisterCard client = null;
+            bool result = false;
+
+            try
+            {
+                client = myChannelFactory.CreateChannel();
+                result = client.UpdateCardsPermissions(permissions, cardId);
                 ((ICommunicationObject)client).Close();
             }
             catch
