@@ -78,8 +78,7 @@ namespace WanoControlService.Repositories
                     CardId = x.CardId,
                     Deleted = x.IsDeleted,
                     EndTime = x.YmdEnd,
-                    Password = 0,
-                    //TODO - change DB schema!
+                    Password = x.Password,
                     StartTime = x.YmdStart
                 })
                 .ToList();

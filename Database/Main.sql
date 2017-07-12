@@ -28,7 +28,7 @@ CREATE TABLE wano_main.w_cards
   c_id serial NOT NULL,
   "c_cardId" integer,
   c_deleted boolean,
-  c_password text,
+  "c_password" integer,
   c_end date,
   c_start date,
   CONSTRAINT w_cards_pkey PRIMARY KEY (c_id)
