@@ -198,39 +198,7 @@ namespace WanoControlCenter.Views
                 permissions.Add(buttons.Select(x => x.Status).ToList());
             }
 
-            _presenter.UpdateCardsPermissions(GenerateFinalResult(permissions, item.Stats), item.cardId);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newList"></param>
-        /// <param name="oldList"></param>
-        /// <returns></returns>
-        private List<List<Status>> GenerateFinalResult(List<List<Status>> newList, List<List<Status>> oldList)
-        {
-            List<List<Status>> result = new List<List<Status>>();
-
-            foreach (var lines in newList.Zip(oldList, Tuple.Create))
-            {
-                List<Status> singleRow = new List<Status>();
-
-                foreach (var stats in lines.Item1.Zip(lines.Item2, Tuple.Create))
-                {
-                    if (stats.Item1 == Status.Blank && stats.Item2 != Status.Blank)
-                    {
-                        singleRow.Add(stats.Item2);
-                    }
-                    else
-                    {
-                        singleRow.Add(stats.Item1);
-                    }
-                }
-
-                result.Add(singleRow);
-            }
-
-            return result;
+            _presenter.UpdateCardsPermissions(_presenter.GenerateFinalResult(permissions, item.Stats), item.cardId);
         }
 
         /// <summary>

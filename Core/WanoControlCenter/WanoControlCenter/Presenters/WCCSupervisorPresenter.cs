@@ -51,5 +51,10 @@ namespace WanoControlCenter.Presenters
         {
             _uimodel.ClearButtonsBackground();
         }
+
+        public List<List<Status>> GenerateFinalResult(List<List<Status>> newList, List<List<Status>> oldList)
+        {
+            return _uimodel.GenerateFinalResult(newList, oldList);
+        }
     }
 }
