@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WanoControlCenter.Presenters;
 
-namespace WanoControlCenter.Interfaces
+namespace WanoControlCenter.Interfaces.Presenters
 {
-    public interface IWCCMainPresenter
+    public interface IWCCConfigurationPresenter
     {
-        WCCMainPresenter _presenter { get; set; }
+        WCCConfigurationPresenter _presenter { get; set; }
     }
 }

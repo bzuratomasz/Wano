@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WanoControlCenter.Presenters;
-using WanoControlCenter.Interfaces;
 using WanoControlContracts.DataContracts.ControllerConfigure;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Views
 {
@@ -27,7 +27,7 @@ namespace WanoControlCenter.Views
             txtNumSN.Text = _numValue.ToString();
             txtNumPort.Text = _numValuePort.ToString();
 
-            _presenter = new WCCConfigurationPresenter(new Models.WCCModel(), this);
+            _presenter = new WCCConfigurationPresenter(new Models.ServiceModel(), this);
         }
 
         private int _numValue = 20;

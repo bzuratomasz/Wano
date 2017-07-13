@@ -61,6 +61,60 @@ namespace WanoControlCenter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CardId: {0}.
+        /// </summary>
+        internal static string cardIdTemplate {
+            get {
+                return ResourceManager.GetString("cardIdTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Door: {0}.
+        /// </summary>
+        internal static string CustomBtnContent {
+            get {
+                return ResourceManager.GetString("CustomBtnContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button{0}.
+        /// </summary>
+        internal static string CustomBtnName {
+            get {
+                return ResourceManager.GetString("CustomBtnName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DockPanel{0}.
+        /// </summary>
+        internal static string DockPanelCustomName {
+            get {
+                return ResourceManager.GetString("DockPanelCustomName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level:{0}.
+        /// </summary>
+        internal static string LevelDesc {
+            get {
+                return ResourceManager.GetString("LevelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time: {0}, End time: {1}, Is deleted: {2}.
+        /// </summary>
+        internal static string ListBoxItemCustomToolTip {
+            get {
+                return ResourceManager.GetString("ListBoxItemCustomToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Konfiguracja.
         /// </summary>
         internal static string WCCMainTitle {

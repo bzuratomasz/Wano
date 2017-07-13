@@ -1,5 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using WanoControlCenter.Models;
+using WanoControlCenter.Presenters;
+using WanoControlCenter.Interfaces.Presenters;
+using WanoControlCenter.Interfaces.Models;
+using WanoControlContracts.DataContracts.RegisterCard;
+using WanoControlCenter.Configuration;
+using System;
 
 namespace WanoControlCenter.Tests.Presenter
 {
@@ -7,8 +14,14 @@ namespace WanoControlCenter.Tests.Presenter
     public class ManageCardsPresenterTests
     {
         [TestMethod]
-        public void TestMethod1()
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ManageCardsPresenter_RegisterCard_Success()
         {
+            var serviceModel = new Mock<IServiceModel>();
+
+
+            serviceModel.Setup(x => x.RegisterCard(new RequestRegisterCard() { }))
+                .Returns(new ResponseRegisterCard() { });
         }
     }
 }

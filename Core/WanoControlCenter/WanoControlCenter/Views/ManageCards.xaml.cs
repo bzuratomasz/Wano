@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Subjects;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WanoControlCenter.Presenters;
-using WanoControlCenter.Interfaces;
 using WanoControlContracts.DataContracts.RegisterCard;
 using System.Reactive.Linq;
 using System.ComponentModel;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Views
 {
@@ -37,7 +28,7 @@ namespace WanoControlCenter.Views
         {
             InitializeComponent();
 
-            _presenter = new ManageCardsPresenter(new Models.WCCModel(), this);
+            _presenter = new ManageCardsPresenter(new Models.ServiceModel(), this);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

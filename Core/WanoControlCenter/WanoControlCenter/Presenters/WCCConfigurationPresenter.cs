@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WanoControlCenter.Models;
-using WanoControlCenter.Interfaces;
+﻿using WanoControlCenter.Models;
 using WanoControlContracts.DataContracts.ControllerConfigure;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Presenters
 {
     public class WCCConfigurationPresenter
     {
         private IWCCConfigurationPresenter _view;
-        private WCCModel _model;
+        private ServiceModel _model;
 
-        public WCCConfigurationPresenter(WCCModel model, IWCCConfigurationPresenter view)
+        public WCCConfigurationPresenter(ServiceModel model, IWCCConfigurationPresenter view)
         {
             this._view = view;
             this._model = model;

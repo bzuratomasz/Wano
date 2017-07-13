@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WanoControlCenter.Configuration;
 using WanoControlCenter.Presenters;
-using WanoControlCenter.Interfaces;
-using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlCenter.Controls;
 using WanoControlCenter.UserControls;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
-using WanoControlCenter.Models;
 using WCCCommon.Models;
+using WanoControlCenter.Models.Schemas;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Views
 {
@@ -29,15 +20,18 @@ namespace WanoControlCenter.Views
     /// </summary>
     public partial class WCCSupervisor : Window, IWCCSupervisorPresenter
     {
-        //TODO - Refactor this class!
-        private List<GroupBox> _groupBoxes = new List<GroupBox>();
-        private List<WCCSupervisorModel> _context = new List<WCCSupervisorModel>();
 
         public WCCSupervisorPresenter _presenter { get; set; }
 
+        //Default values - can be override by configuration;
+        private int _gBoxH = 950;
+        private int _gBoxW = 150;
+        private int _butH = 25;
+        private int _butW = 100;
+
         public WCCSupervisor()
         {
-            _presenter = new WCCSupervisorPresenter(new Models.WCCModel(), this);
+            _presenter = new WCCSupervisorPresenter(new Models.ServiceModel(), new Models.SupervisorUiModel(), this);
 
             InitializeComponent();
             ReadConfiguration();
@@ -45,9 +39,14 @@ namespace WanoControlCenter.Views
             ControlPanel.ControlPanelEvent += ControlPanel_ControlPanelEvent;
         }
 
-        private void ReadConfiguration() 
+        private void ReadConfiguration()
         {
             var result = ConfigurationContainer.Instance.Specification;
+
+            _gBoxH = ConfigurationContainer.Instance.GBoxH;
+            _gBoxW = ConfigurationContainer.Instance.GBoxW;
+            _butH = ConfigurationContainer.Instance.ButH;
+            _butW = ConfigurationContainer.Instance.ButW;
 
             CreateGroupBox(result.Count);
             InsertButtonsIntoGroupBox(result);
@@ -62,14 +61,15 @@ namespace WanoControlCenter.Views
         {
             int i = 0;
 
-            foreach (var groupBox in _groupBoxes) 
+            foreach (var groupBox in _presenter.GetGroupBoxes())
             {
-                DockPanel grid = new DockPanel()
+                DockPanelCustom grid = new DockPanelCustom()
                 {
-                    Width = 900,
-                    Height = 50,
+                    Width = _gBoxW - 50,
+                    Height = _gBoxH - 100,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-                    Name = string.Format("DockPanel{0}", i)
+                    Name = string.Format(Properties.Resources.DockPanelCustomName, i),
+                    IdNumber = i
                 };
 
                 AddButtons(result[i], grid);
@@ -84,24 +84,25 @@ namespace WanoControlCenter.Views
         /// </summary>
         /// <param name="p"></param>
         /// <param name="grid"></param>
-        private void AddButtons(int p, DockPanel grid)
+        private void AddButtons(int p, DockPanelCustom grid)
         {
 
             for (int i = 0; i < p; i++)
             {
-                CustomButton current = new CustomButton()
+                ButtonCustom current = new ButtonCustom()
                 {
-                    Height = 25,
-                    Width = 100,
-                    Content = string.Format("Door: {0}", i),
+                    Height = _butH,
+                    Width = _butW,
+                    Content = string.Format(Properties.Resources.CustomBtnContent, i),
                     Background = Brushes.LightGray,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-                    Name = string.Format("Button{0}", i)
+                    Name = string.Format(Properties.Resources.CustomBtnName, i),
+                    IdNumber = i
                 };
 
                 current.Click += current_Click;
 
-                _context.Add(new WCCSupervisorModel() 
+                _presenter.AddToContext(new ControlEntity()
                 {
                     customButton = current,
                     dockPanel = grid
@@ -114,24 +115,24 @@ namespace WanoControlCenter.Views
 
         void current_Click(object sender, RoutedEventArgs e)
         {
-            var instance = _context.Where(x => x.customButton == ((CustomButton)sender)).SingleOrDefault();
+            var instance = _presenter.GetContext().Where(x => x.customButton == ((ButtonCustom)sender)).SingleOrDefault();
 
-            if (((CustomButton)sender).Background == Brushes.Red) 
+            if (((ButtonCustom)sender).Background == Brushes.Red)
             {
-                ((CustomButton)sender).Background = Brushes.Green;
-                ((CustomButton)sender).Status = Status.Set;
+                ((ButtonCustom)sender).Background = Brushes.Green;
+                ((ButtonCustom)sender).Status = Status.Set;
                 instance.customButton.Status = Status.Set;
             }
-            else if (((CustomButton)sender).Background == Brushes.Green)
+            else if (((ButtonCustom)sender).Background == Brushes.Green)
             {
-                ((CustomButton)sender).Background = Brushes.LightGray;
-                ((CustomButton)sender).Status = Status.Blank;
+                ((ButtonCustom)sender).Background = Brushes.LightGray;
+                ((ButtonCustom)sender).Status = Status.Blank;
                 instance.customButton.Status = Status.Blank;
             }
             else
             {
-                ((CustomButton)sender).Background = Brushes.Red;
-                ((CustomButton)sender).Status = Status.Clear;
+                ((ButtonCustom)sender).Background = Brushes.Red;
+                ((ButtonCustom)sender).Status = Status.Clear;
                 instance.customButton.Status = Status.Clear;
             }
         }
@@ -140,20 +141,19 @@ namespace WanoControlCenter.Views
         /// 
         /// </summary>
         /// <param name="p"></param>
-        private void CreateGroupBox(int p)
+        private void CreateGroupBox(int groupBoxesCount)
         {
-            for (int i = 0; i < p; i++)
+            for (int i = 0; i < groupBoxesCount; i++)
             {
-                var idString = string.Format("Level:{0}", i);
+                var idString = string.Format(Properties.Resources.LevelDesc, i);
                 GroupBox groupBox = new GroupBox
                 {
-                    Width = 950,
-                    Height = 150,
+                    Width = _gBoxW,
+                    Height = _gBoxH,
                     Header = idString
                 };
 
-                _groupBoxes.Add(groupBox);
-
+                _presenter.AddGroupBox(groupBox);
                 mainStackPanel.Children.Add(groupBox);
             }
         }
@@ -174,7 +174,7 @@ namespace WanoControlCenter.Views
             {
                 ControlPanelReading(item);
             }
-            else 
+            else
             {
                 ControlPanelUpdate(item);
             }
@@ -186,16 +186,16 @@ namespace WanoControlCenter.Views
         /// <param name="item"></param>
         private void ControlPanelUpdate(ListBoxItemCustom item)
         {
-             List<List<Status>> permissions = new List<List<Status>>();
-             var groupBoxes = _context.Select(w => w.dockPanel).Distinct();
+            List<List<Status>> permissions = new List<List<Status>>();
+            var groupBoxes = _presenter.GetContext().Select(w => w.dockPanel).Distinct();
 
-             foreach (var items in groupBoxes)
-             {
-                 var buttons = _context.Where(x => x.dockPanel == items).Select(s => s.customButton);
-                 permissions.Add(buttons.Select(x => x.Status).ToList());
-             }
+            foreach (var items in groupBoxes)
+            {
+                var buttons = _presenter.GetContext().Where(x => x.dockPanel == items).Select(s => s.customButton);
+                permissions.Add(buttons.Select(x => x.Status).ToList());
+            }
 
-             _presenter.UpdateCardsPermissions(permissions, item.cardId);
+            _presenter.UpdateCardsPermissions(permissions, item.cardId);
         }
 
         /// <summary>
@@ -211,8 +211,8 @@ namespace WanoControlCenter.Views
             {
                 foreach (var buttonCollections in item.Stats)
                 {
-                    var groupBox = _context
-                        .Where(x => x.dockPanel.Name == string.Format("DockPanel{0}", rowIndex))
+                    var groupBox = _presenter.GetContext()
+                        .Where(x => x.dockPanel.IdNumber == rowIndex)
                         .Select(s => s.customButton);
 
                     foreach (Status button in buttonCollections)
@@ -226,17 +226,7 @@ namespace WanoControlCenter.Views
             }
             else
             {
-                ClearButtonsBackground();
-            }
-        }
-
-        private void ClearButtonsBackground()
-        {
-            var result = _context.Select(x => x.customButton);
-            foreach (var item in result)
-            {
-                ((CustomButton)item).Background = Brushes.LightGray;
-                ((CustomButton)item).Status = Status.Blank;
+                _presenter.ClearButtonsBackground();
             }
         }
 
@@ -246,10 +236,10 @@ namespace WanoControlCenter.Views
         /// <param name="columnIndex"></param>
         /// <param name="groupBox"></param>
         /// <param name="button"></param>
-        private static void SetBackgroundColor(int columnIndex, IEnumerable<CustomButton> groupBox, Status button)
+        private static void SetBackgroundColor(int columnIndex, IEnumerable<ButtonCustom> groupBox, Status button)
         {
-            CustomButton cur = groupBox
-                .Where(x => x.Name == string.Format("Button{0}", columnIndex)).
+            ButtonCustom cur = groupBox
+                .Where(x => x.IdNumber == columnIndex).
                 SingleOrDefault();
 
             if (cur != null)

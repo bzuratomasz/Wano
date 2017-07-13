@@ -9,10 +9,12 @@ using WanoControlContracts.DataContracts.ControllerConfigure;
 using WanoControlContracts.ServiceContracts.ControllerConfigure;
 using System.Collections.Generic;
 using WCCCommon.Models;
+using WanoControlCenter.Interfaces.Models;
+using System;
 
 namespace WanoControlCenter.Models
 {
-    public class WCCModel
+    public class ServiceModel : IServiceModel
     {
 
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -20,29 +22,36 @@ namespace WanoControlCenter.Models
         private readonly BasicHttpBinding _myBinding = new BasicHttpBinding();
         private readonly EndpointAddress _myEndpoint = new EndpointAddress(ConfigurationContainer.Instance.Url);
         private readonly ChannelFactory<IWanoService> myChannelFactory;
+        private IRegisterCard _RegisterCardClient = null;
 
-        public WCCModel()
+        public ServiceModel()
         {
             myChannelFactory = new ChannelFactory<IWanoService>(_myBinding, _myEndpoint);
+            _RegisterCardClient = myChannelFactory.CreateChannel();
         }
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
         {
             ResponseRegisterCard result = new ResponseRegisterCard();
-            IRegisterCard client = null;
 
-            try
+            if (card != null)
             {
-                client = myChannelFactory.CreateChannel();
-                result = client.RegisterCard(card);
-                ((ICommunicationObject)client).Close();
-            }
-            catch
-            {
-                if (client != null)
+                try
                 {
-                    ((ICommunicationObject)client).Abort();
+                    result = _RegisterCardClient.RegisterCard(card);
+                    ((ICommunicationObject)_RegisterCardClient).Close();
                 }
+                catch
+                {
+                    if (_RegisterCardClient != null)
+                    {
+                        ((ICommunicationObject)_RegisterCardClient).Abort();
+                    }
+                }
+            }
+            else 
+            {
+                throw new InvalidOperationException("Empty argument! Declare - RequestRegisterCard");
             }
 
             return result;
@@ -70,19 +79,17 @@ namespace WanoControlCenter.Models
         public List<RequestRegisterCard> GetCards()
         {
             List<RequestRegisterCard> result = new List<RequestRegisterCard>();
-            IRegisterCard client = null;
 
             try
             {
-                client = myChannelFactory.CreateChannel();
-                result = client.GetCards();
-                ((ICommunicationObject)client).Close();
+                result = _RegisterCardClient.GetCards();
+                ((ICommunicationObject)_RegisterCardClient).Close();
             }
             catch
             {
-                if (client != null)
+                if (_RegisterCardClient != null)
                 {
-                    ((ICommunicationObject)client).Abort();
+                    ((ICommunicationObject)_RegisterCardClient).Abort();
                 }
             }
 
@@ -91,20 +98,18 @@ namespace WanoControlCenter.Models
 
         public bool UpdateCardsPermissions(List<List<Status>> permissions, int cardId)
         {
-            IRegisterCard client = null;
             bool result = false;
 
             try
             {
-                client = myChannelFactory.CreateChannel();
-                result = client.UpdateCardsPermissions(permissions, cardId);
-                ((ICommunicationObject)client).Close();
+                result = _RegisterCardClient.UpdateCardsPermissions(permissions, cardId);
+                ((ICommunicationObject)_RegisterCardClient).Close();
             }
             catch
             {
-                if (client != null)
+                if (_RegisterCardClient != null)
                 {
-                    ((ICommunicationObject)client).Abort();
+                    ((ICommunicationObject)_RegisterCardClient).Abort();
                 }
             }
 

@@ -33,18 +33,34 @@ namespace WanoControlCenter.Configuration
         public string Pass { get; private set; }
         public Dictionary<int, int> Specification { get; set; }
         public string Url { get; private set; }
+        public int GBoxH { get; private set; }
+        public int GBoxW { get; private set; }
+        public int ButH { get; private set; }
+        public int ButW { get; private set; }
 
         public ConfigurationContainer()
         {
-            Initialize();
+            try
+            {
+                Initialize();
+            }
+            catch (Exception) 
+            {
+                throw new Exception("Error while reading configuration! Please check *.config file.");
+            }
         }
 
-        private void Initialize() 
+        private void Initialize()
         {
             User = ConfigurationManager.AppSettings["login"];
             Pass = ConfigurationManager.AppSettings["pass"];
             Specification = LoadSpecification(ConfigurationManager.AppSettings["Wano.SerializedLevels"]);
             Url = ConfigurationManager.AppSettings["Url"];
+
+            GBoxH = int.Parse(ConfigurationManager.AppSettings["GBoxH"]);
+            GBoxW = int.Parse(ConfigurationManager.AppSettings["GBoxW"]);
+            ButH = int.Parse(ConfigurationManager.AppSettings["ButH"]);
+            ButW = int.Parse(ConfigurationManager.AppSettings["ButW"]);
         }
 
 

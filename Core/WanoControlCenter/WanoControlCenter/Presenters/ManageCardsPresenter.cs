@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WanoControlCenter.Models;
-using WanoControlCenter.Interfaces;
+﻿using WanoControlCenter.Models;
 using WanoControlContracts.DataContracts.RegisterCard;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Presenters
 {
     public class ManageCardsPresenter
     {
         private IManageCardsPresenter _view;
-        private WCCModel _model;
+        private ServiceModel _model;
 
-        public ManageCardsPresenter(WCCModel model, IManageCardsPresenter view)
+        public ManageCardsPresenter(ServiceModel model, IManageCardsPresenter view)
         {
             this._view = view;
             this._model = model;

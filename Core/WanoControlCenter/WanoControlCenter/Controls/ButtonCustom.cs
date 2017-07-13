@@ -3,8 +3,9 @@ using WCCCommon.Models;
 
 namespace WanoControlCenter.Controls
 {
-    public class CustomButton : Button
+    public class ButtonCustom : Button
     {
         public Status Status { get; set; }
+        public int IdNumber { get; set; }
     }
 }

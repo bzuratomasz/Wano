@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cardIdTemplate" xml:space="preserve">
+    <value>CardId: {0}</value>
+  </data>
+  <data name="ListBoxItemCustomToolTip" xml:space="preserve">
+    <value>Start time: {0}, End time: {1}, Is deleted: {2}</value>
+  </data>
   <data name="WCCMainTitle" xml:space="preserve">
     <value>Konfiguracja</value>
+  </data>
+  <data name="LevelDesc" xml:space="preserve">
+    <value>Level:{0}</value>
+  </data>
+  <data name="CustomBtnContent" xml:space="preserve">
+    <value>Door: {0}</value>
+  </data>
+  <data name="CustomBtnName" xml:space="preserve">
+    <value>Button{0}</value>
+  </data>
+  <data name="DockPanelCustomName" xml:space="preserve">
+    <value>DockPanel{0}</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace WanoControlCenter.Bootstrappers
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<WCCModel>()
+            builder.RegisterType<ServiceModel>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
                   

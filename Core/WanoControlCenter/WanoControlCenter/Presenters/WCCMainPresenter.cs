@@ -1,14 +1,14 @@
 ﻿using WanoControlCenter.Models;
-using WanoControlCenter.Interfaces;
+using WanoControlCenter.Interfaces.Presenters;
 
 namespace WanoControlCenter.Presenters
 {
     public class WCCMainPresenter
     {
         private IWCCMainPresenter _view;
-        private WCCModel _model;
+        private ServiceModel _model;
 
-        public WCCMainPresenter(WCCModel model, IWCCMainPresenter view)
+        public WCCMainPresenter(ServiceModel model, IWCCMainPresenter view)
         {
             this._view = view;
             this._model = model;

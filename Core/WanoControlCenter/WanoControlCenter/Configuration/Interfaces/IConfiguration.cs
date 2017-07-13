@@ -12,5 +12,9 @@ namespace WanoControlCenter.Configuration.Interfaces
         string Pass { get; }
         Dictionary<int, int> Specification { get; set; }
         string Url { get; }
+        int GBoxH { get; }
+        int GBoxW { get; }
+        int ButH { get; }
+        int ButW { get; }
     }
 }

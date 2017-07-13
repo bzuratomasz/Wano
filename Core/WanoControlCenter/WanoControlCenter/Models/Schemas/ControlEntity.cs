@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using WanoControlCenter.Controls;
 
-namespace WanoControlCenter.Models
+namespace WanoControlCenter.Models.Schemas
 {
-    public class WCCSupervisorModel
+    public class ControlEntity
     {
-        public DockPanel dockPanel { get; set; }
+        public DockPanelCustom dockPanel { get; set; }
 
-        public CustomButton customButton { get; set; }
+        public ButtonCustom customButton { get; set; }
     }
 }

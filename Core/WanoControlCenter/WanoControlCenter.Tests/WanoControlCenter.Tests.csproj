@@ -79,7 +79,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CommonLibs\WanoControlContracts\WanoControlContracts.csproj">
+      <Project>{7d453e05-f5c4-4a40-b04a-b435d870f5b7}</Project>
+      <Name>WanoControlContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\CommonLibs\WCCCommon\WCCCommon.csproj">
+      <Project>{37f6f6e5-e7cf-4dff-a6c4-82750bbc660d}</Project>
+      <Name>WCCCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WanoControlCenter\WanoControlCenter.csproj">
+      <Project>{42504428-6674-4b54-8fdf-f71e51b98540}</Project>
+      <Name>WanoControlCenter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
