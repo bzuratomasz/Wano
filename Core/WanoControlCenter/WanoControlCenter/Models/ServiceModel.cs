@@ -27,7 +27,6 @@ namespace WanoControlCenter.Models
         public ServiceModel()
         {
             myChannelFactory = new ChannelFactory<IWanoService>(_myBinding, _myEndpoint);
-            _RegisterCardClient = myChannelFactory.CreateChannel();
         }
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
@@ -38,6 +37,7 @@ namespace WanoControlCenter.Models
             {
                 try
                 {
+                    _RegisterCardClient = myChannelFactory.CreateChannel();
                     result = _RegisterCardClient.RegisterCard(card);
                     ((ICommunicationObject)_RegisterCardClient).Close();
                 }
@@ -82,6 +82,7 @@ namespace WanoControlCenter.Models
 
             try
             {
+                _RegisterCardClient = myChannelFactory.CreateChannel();
                 result = _RegisterCardClient.GetCards();
                 ((ICommunicationObject)_RegisterCardClient).Close();
             }
@@ -102,6 +103,7 @@ namespace WanoControlCenter.Models
 
             try
             {
+                _RegisterCardClient = myChannelFactory.CreateChannel();
                 result = _RegisterCardClient.UpdateCardsPermissions(permissions, cardId);
                 ((ICommunicationObject)_RegisterCardClient).Close();
             }
