@@ -44,7 +44,7 @@ namespace WanoControlCenter.Configuration
             {
                 Initialize();
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 throw new Exception("Error while reading configuration! Please check *.config file.");
             }
@@ -57,16 +57,36 @@ namespace WanoControlCenter.Configuration
             Specification = LoadSpecification(ConfigurationManager.AppSettings["Wano.SerializedLevels"]);
             Url = ConfigurationManager.AppSettings["Url"];
 
-            GBoxH = int.Parse(ConfigurationManager.AppSettings["GBoxH"]);
-            GBoxW = int.Parse(ConfigurationManager.AppSettings["GBoxW"]);
-            ButH = int.Parse(ConfigurationManager.AppSettings["ButH"]);
-            ButW = int.Parse(ConfigurationManager.AppSettings["ButW"]);
+            var gBoxH = ConfigurationManager.AppSettings["GBoxH"];
+            if (gBoxH != null)
+            {
+                GBoxH = int.Parse(gBoxH);
+            }
+
+            var gBoxW = ConfigurationManager.AppSettings["GBoxW"];
+            if (gBoxW != null)
+            {
+                GBoxW = int.Parse(gBoxW);
+            }
+
+            var butH = ConfigurationManager.AppSettings["ButH"];
+            if (butH != null)
+            {
+                ButH = int.Parse(butH);
+            }
+
+            var butW = ConfigurationManager.AppSettings["ButW"];
+            if (butW != null)
+            {
+                ButW = int.Parse(butW);
+            }
         }
 
 
-        private Dictionary<int, int> LoadSpecification(string serializedStateDescriptions)
+        public Dictionary<int, int> LoadSpecification(string serializedStateDescriptions)
         {
             var specifications = new Dictionary<int, int>();
+
             try
             {
                 IEnumerable<object> deserialized = (IEnumerable<object>)JsonConvert.DeserializeObject(serializedStateDescriptions);

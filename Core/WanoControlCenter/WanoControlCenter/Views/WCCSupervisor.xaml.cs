@@ -198,7 +198,18 @@ namespace WanoControlCenter.Views
                 permissions.Add(buttons.Select(x => x.Status).ToList());
             }
 
-            _presenter.UpdateCardsPermissions(_presenter.GenerateFinalResult(permissions, item.Stats), item.cardId);
+            var permissionsResult = new List<List<Status>>();
+
+            if (item.Stats != null)
+            {
+                permissionsResult = _presenter.GenerateFinalResult(permissions, item.Stats);
+            }
+            else
+            {
+                permissionsResult = permissions;
+            }
+
+            _presenter.UpdateCardsPermissions(permissionsResult, item.cardId);
         }
 
         /// <summary>

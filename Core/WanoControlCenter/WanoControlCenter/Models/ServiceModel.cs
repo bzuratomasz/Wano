@@ -20,26 +20,35 @@ namespace WanoControlCenter.Models
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly BasicHttpBinding _myBinding = new BasicHttpBinding();
-        private readonly EndpointAddress _myEndpoint = new EndpointAddress(ConfigurationContainer.Instance.Url);
+        private readonly EndpointAddress _myEndpoint;
         private readonly ChannelFactory<IWanoService> myChannelFactory;
         private IRegisterCard _RegisterCardClient = null;
 
         public ServiceModel()
         {
-            myChannelFactory = new ChannelFactory<IWanoService>(_myBinding, _myEndpoint);
+            var endPoint = ConfigurationContainer.Instance.Url;
+
+            if (endPoint != null)
+            {
+                _myEndpoint = new EndpointAddress(ConfigurationContainer.Instance.Url);
+                myChannelFactory = new ChannelFactory<IWanoService>(_myBinding, _myEndpoint);
+            }
         }
 
         public ResponseRegisterCard RegisterCard(RequestRegisterCard card)
         {
-            ResponseRegisterCard result = new ResponseRegisterCard();
+            ResponseRegisterCard result = new ResponseRegisterCard() { Registered = true };
 
-            if (card != null)
+            if (card.CardId > 0)
             {
                 try
                 {
-                    _RegisterCardClient = myChannelFactory.CreateChannel();
-                    result = _RegisterCardClient.RegisterCard(card);
-                    ((ICommunicationObject)_RegisterCardClient).Close();
+                    if (myChannelFactory != null)
+                    {
+                        _RegisterCardClient = myChannelFactory.CreateChannel();
+                        result = _RegisterCardClient.RegisterCard(card);
+                        ((ICommunicationObject)_RegisterCardClient).Close();
+                    }
                 }
                 catch
                 {
@@ -49,7 +58,7 @@ namespace WanoControlCenter.Models
                     }
                 }
             }
-            else 
+            else
             {
                 throw new InvalidOperationException("Empty argument! Declare - RequestRegisterCard");
             }
@@ -101,18 +110,28 @@ namespace WanoControlCenter.Models
         {
             bool result = false;
 
-            try
+            if (cardId > 0 && permissions != null && permissions.Count > 0)
             {
-                _RegisterCardClient = myChannelFactory.CreateChannel();
-                result = _RegisterCardClient.UpdateCardsPermissions(permissions, cardId);
-                ((ICommunicationObject)_RegisterCardClient).Close();
-            }
-            catch
-            {
-                if (_RegisterCardClient != null)
+                try
                 {
-                    ((ICommunicationObject)_RegisterCardClient).Abort();
+                    if (myChannelFactory != null)
+                    {
+                        _RegisterCardClient = myChannelFactory.CreateChannel();
+                        result = _RegisterCardClient.UpdateCardsPermissions(permissions, cardId);
+                        ((ICommunicationObject)_RegisterCardClient).Close();
+                    }
                 }
+                catch
+                {
+                    if (_RegisterCardClient != null)
+                    {
+                        ((ICommunicationObject)_RegisterCardClient).Abort();
+                    }
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Empty argument! Declare - cardId");
             }
 
             return result;

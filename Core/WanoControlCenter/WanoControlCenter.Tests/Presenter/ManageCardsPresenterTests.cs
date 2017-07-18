@@ -7,6 +7,10 @@ using WanoControlCenter.Interfaces.Models;
 using WanoControlContracts.DataContracts.RegisterCard;
 using WanoControlCenter.Configuration;
 using System;
+using xunit = Xunit;
+using WanoControlCenter.Configuration.Interfaces;
+using System.Collections.Generic;
+using WCCCommon.Models;
 
 namespace WanoControlCenter.Tests.Presenter
 {
@@ -14,14 +18,33 @@ namespace WanoControlCenter.Tests.Presenter
     public class ManageCardsPresenterTests
     {
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        public void ManageCardsPresenter_RegisterCard_ThrowsException()
+        {
+            //Arrange
+            var mngCardsP = new Mock<IManageCardsPresenter>();
+
+            //Act
+            var result = new ManageCardsPresenter(new ServiceModel(), mngCardsP.Object);
+
+            //Assert
+            xunit.Assert.Throws<InvalidOperationException>(() => result.RegisterCard(new RequestRegisterCard()
+            {
+                CardId = 0
+            }));
+        }
+
+        [TestMethod]
         public void ManageCardsPresenter_RegisterCard_Success()
         {
-            var serviceModel = new Mock<IServiceModel>();
+            //Arrange
+            var mngCardsP = new Mock<IManageCardsPresenter>();
 
+            //Act
+            var result = new ManageCardsPresenter(new ServiceModel(), mngCardsP.Object);
 
-            serviceModel.Setup(x => x.RegisterCard(new RequestRegisterCard() { }))
-                .Returns(new ResponseRegisterCard() { });
+            //Assert
+            xunit.Assert.Equal(true, result.RegisterCard(new RequestRegisterCard() { CardId = 1 }).Registered);
         }
+
     }
 }

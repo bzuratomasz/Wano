@@ -13,6 +13,8 @@ namespace WanoControlCenter.Models
 {
     public class SupervisorUiModel
     {
+        private readonly object _syncLocker = new object();
+
         private List<ControlEntity> _context = new List<ControlEntity>();
         private List<GroupBox> _groupBoxes = new List<GroupBox>();
 
@@ -25,7 +27,10 @@ namespace WanoControlCenter.Models
 
         public void AddToContext(ControlEntity item)
         {
-            _context.Add(item);
+            lock (_syncLocker)
+            {
+                _context.Add(item);
+            }
         }
 
         public List<ControlEntity> GetContext() 
