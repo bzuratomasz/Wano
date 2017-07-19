@@ -86,6 +86,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationContainerTests.cs" />
+    <Compile Include="Models\SupervisorUiModelTests.cs" />
     <Compile Include="Presenter\ManageCardsPresenterTests.cs" />
     <Compile Include="Presenter\WCCSupervisorPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

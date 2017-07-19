@@ -115,9 +115,20 @@ namespace WanoControlService.Repositories
         {
             lock (_syncLocker)
             {
-                _activityRequestList.Add(req);
+                if (req.UserName != null)
+                {
+                    _activityRequestList.Add(req);
+                }
+                else 
+                {
+                    throw new Exception("Specify UserName property please!");
+                }
             }
         }
 
+        public int ActivityListCount()
+        {
+            return _activityRequestList.Count;
+        }
     }
 }

@@ -62,22 +62,29 @@ namespace WanoControlCenter.Models
         {
             List<List<Status>> result = new List<List<Status>>();
 
-            foreach (var lines in newList.Zip(oldList, Tuple.Create))
+            if (oldList != null)
             {
-                List<Status> singleRow = new List<Status>();
-
-                foreach (var stats in lines.Item1.Zip(lines.Item2, Tuple.Create))
+                foreach (var lines in newList.Zip(oldList, Tuple.Create))
                 {
-                    if (stats.Item1 == Status.Blank && stats.Item2 != Status.Blank)
+                    List<Status> singleRow = new List<Status>();
+
+                    foreach (var stats in lines.Item1.Zip(lines.Item2, Tuple.Create))
                     {
-                        singleRow.Add(stats.Item2);
+                        if (stats.Item1 == Status.Blank && stats.Item2 != Status.Blank)
+                        {
+                            singleRow.Add(stats.Item2);
+                        }
+                        else
+                        {
+                            singleRow.Add(stats.Item1);
+                        }
                     }
-                    else
-                    {
-                        singleRow.Add(stats.Item1);
-                    }
+                    result.Add(singleRow);
                 }
-                result.Add(singleRow);
+            }
+            else 
+            {
+                result = newList;
             }
             return result;
         }

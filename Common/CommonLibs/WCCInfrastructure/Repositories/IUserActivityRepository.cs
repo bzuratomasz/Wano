@@ -6,5 +6,6 @@ namespace WCCInfrastructure.Repositories
     public interface IUserActivityRepository
     {
         void AddActivity(ActivityRequest req);
+        int ActivityListCount();
     }
 }
