@@ -115,6 +115,7 @@
     <Compile Include="Hosters\WorkflowServiceHostInitializer.cs" />
     <Compile Include="Repositories\DbRepository.cs" />
     <Compile Include="Repositories\SRDataRepository.cs" />
+    <Compile Include="Services\Context\ContextFactory.cs" />
     <Compile Include="Services\SRDataService\SRDataService.cs" />
     <Compile Include="Services\UserActivityService\UserActivityTimer.cs" />
     <Compile Include="Modules\RepositoriesModule.cs" />

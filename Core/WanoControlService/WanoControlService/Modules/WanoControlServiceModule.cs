@@ -17,6 +17,7 @@ using WCCInfrastructure.Configuration;
 using WCCInfrastructure.Services.SRDataService;
 using WanoControlService.Services.ControllerService;
 using WCCInfrastructure.Services.ControllerService;
+using WanoControlService.Services.Context;
 
 namespace WanoControlService.Modules
 {
@@ -71,7 +72,9 @@ namespace WanoControlService.Modules
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(typeof(WCCException));
 
-
+            builder.RegisterType<ContextFactory>()
+                .AsImplementedInterfaces();
+            
             builder.RegisterType<WCCException>()
                 .AsSelf();
         }

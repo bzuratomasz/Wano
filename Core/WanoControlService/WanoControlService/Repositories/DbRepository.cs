@@ -12,6 +12,7 @@ using WCCDatabaseORM.Schemes.Main.Contexts;
 using WCCDatabaseORM.Schemes.Main.Entities;
 using WCCInfrastructure.Configuration;
 using WCCInfrastructure.Repositories;
+using WCCInfrastructure.Services.Context;
 
 namespace WanoControlService.Repositories
 {
@@ -21,15 +22,17 @@ namespace WanoControlService.Repositories
         private static readonly ILog Logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IConfiguration _conf;
+        private readonly IContextFactory _context;
 
-        public DbRepository(IConfiguration conf)
+        public DbRepository(IConfiguration conf, IContextFactory context)
         {
             _conf = conf;
+            _context = context;
         }
 
         public void AddSRData(SRData sr)
         {
-            using (var context = new MainDbContext(_conf))
+            using (var context = _context.DbContext)
             {
                 SRDataEntity result = new SRDataEntity()
                 {
@@ -47,7 +50,7 @@ namespace WanoControlService.Repositories
 
         public void AddUserActivity(List<ActivityEntity> list)
         {
-            using (var context = new MainDbContext(_conf))
+            using (var context = _context.DbContext)
             {
                 context.Activity.AddRange(list.ToList());
                 context.SaveChanges();
@@ -57,7 +60,7 @@ namespace WanoControlService.Repositories
 
         public void AddCard(RequestRegisterCard card)
         {
-            using (var context = new MainDbContext(_conf))
+            using (var context = _context.DbContext)
             {
                 context.Cards.Add(new CardsEntity()
                 {
@@ -77,7 +80,7 @@ namespace WanoControlService.Repositories
         {
             IEnumerable<RequestRegisterCard> resultCollection = null;
 
-            using (var context = new MainDbContext(_conf))
+            using (var context = _context.DbContext)
             {
                 resultCollection = context.Cards.Select(x => new RequestRegisterCard()
                 {
@@ -99,7 +102,7 @@ namespace WanoControlService.Repositories
         {
             var result = false;
 
-            using (var context = new MainDbContext(_conf))
+            using (var context = _context.DbContext)
             {
                 try
                 {

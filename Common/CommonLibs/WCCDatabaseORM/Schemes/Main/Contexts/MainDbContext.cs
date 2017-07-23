@@ -19,7 +19,7 @@ namespace WCCDatabaseORM.Schemes.Main.Contexts
         private IDbConfiguration _configuration;
         #endregion
 
-        public DbSet<CardsEntity> Cards { get; set; }
+        public IDbSet<CardsEntity> Cards { get; set; }
         public DbSet<ActivityEntity> Activity { get; set; }
         public DbSet<SRDataEntity> SRData { get; set; }
 

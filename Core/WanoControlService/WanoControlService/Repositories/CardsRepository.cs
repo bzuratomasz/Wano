@@ -20,7 +20,10 @@ namespace WanoControlService.Repositories
 
         public void AddCard(RequestRegisterCard card)
         {
-            _repo.AddCard(card);
+            if (card.CardId > 0)
+            {
+                _repo.AddCard(card);
+            }
         }
 
 
@@ -32,7 +35,18 @@ namespace WanoControlService.Repositories
 
         public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
         {
-            return _repo.UpdateCardsPermissions(Permissions, cardId);
+            bool result = false;
+
+            if (cardId > 0)
+            {
+                result = _repo.UpdateCardsPermissions(Permissions, cardId);
+            }
+            else 
+            {
+                throw new Exception("CardId is null!");
+            }
+
+            return result;
         }
     }
 }

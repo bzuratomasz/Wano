@@ -48,6 +48,7 @@
     <Compile Include="Repositories\IDbRepository.cs" />
     <Compile Include="Repositories\ISRDataRepository.cs" />
     <Compile Include="Repositories\IUserActivityRepository.cs" />
+    <Compile Include="Services\Context\IContextFactory.cs" />
     <Compile Include="Services\ControllerService\IControllerService.cs" />
     <Compile Include="Services\RegisterCardService\IRegisterCardService.cs" />
     <Compile Include="Services\RegisterCardService\IStrategyRegisterCardService.cs" />

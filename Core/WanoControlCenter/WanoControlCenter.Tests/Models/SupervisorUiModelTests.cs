@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WanoControlCenter.Models;
 using System.Collections.Generic;
 using WCCCommon.Models;
+using WanoControlCenter.Models.Schemas;
 
 namespace WanoControlCenter.Tests.Models
 {
@@ -104,6 +105,20 @@ namespace WanoControlCenter.Tests.Models
             //Assert
             Assert.AreEqual(calculate[0][0], expected[0][0]);
             Assert.AreEqual(calculate[0][1], expected[0][1]);
+        }
+
+        [TestMethod]
+        public void SupervisorUiModel_AddToContext_VerifyListCount()
+        {
+            //Arrange
+            List<List<Status>> newList = new List<List<Status>>();
+
+            //Act
+            var result = new SupervisorUiModel();
+            result.AddToContext(new ControlEntity());
+
+            //Assert
+            Assert.AreEqual(result.GetContext().Count, 1);
         }
     }
 }
