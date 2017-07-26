@@ -9,20 +9,32 @@ namespace WanoControlService.Services.ControllerService
     {
 
         private ArrayList _arrControllers = new ArrayList();
-        private wgMjController _control = new wgMjController();
+        private wgMjController _control;
 
         public bool ConnectToController(RequestControllerConfigure request)
         {
-            wgMjControllerConfigure conf = new wgMjControllerConfigure()
+            //wgMjControllerConfigure conf = new wgMjControllerConfigure()
+            //{
+            //    gateway = request.Gateway,
+            //    holidayControl = request.HolidayControl,
+            //    ip = request.Ip,
+            //    mask = request.Mask,
+            //    pcIPAddr = request.PcIPAddr,
+            //    port = request.Port
+            //};
+
+            _control = new wgMjController() 
             {
-                gateway = request.Gateway,
-                holidayControl = request.HolidayControl,
-                ip = request.Ip,
-                mask = request.Mask,
-                pcIPAddr = request.PcIPAddr,
-                port = request.Port
+                ControllerSN = request.SN,
+                IP = request.Ip.ToString(),
+                PORT = request.Port
             };
 
+            var x1 = _control.RemoteOpenDoorIP(1);
+            var x2 = _control.RemoteOpenDoorIP(2);
+            var x3 = _control.RemoteOpenDoorIP(3);
+            var x4 = _control.RemoteOpenDoorIP(4);
+            
             return true;
         }
 

@@ -34,6 +34,9 @@ namespace WanoControlCenter.Views
 
         private async void InitializeControl()
         {
+
+            SwitchVisiblityBefore();
+
             await Task.Run(() =>
             {
                 var result = _presenter.GetController();
@@ -45,14 +48,33 @@ namespace WanoControlCenter.Views
             });
         }
 
+        private void SwitchVisiblityBefore()
+        {
+            Main.Visibility = System.Windows.Visibility.Hidden;
+            Picture.Visibility = System.Windows.Visibility.Hidden;
+        }
+
         private void BindElemetns(ResponseControllerConfigure result)
         {
-            ipTextBox.Text = result.Ip.ToString();
-            txtNumSN.Text = result.SN.ToString();
-            maskTextBox.Text = result.Mask.ToString();
-            gatewayTextBox.Text = result.Gateway.ToString();
-            txtNumPort.Text = result.Port.ToString();
-            pcIpTextBox.Text = result.PcIPAddr;
+            if (result.SN != 0)
+            {
+                ipTextBox.Text = result.Ip.ToString();
+                txtNumSN.Text = result.SN.ToString();
+                maskTextBox.Text = result.Mask.ToString();
+                gatewayTextBox.Text = result.Gateway.ToString();
+                txtNumPort.Text = result.Port.ToString();
+                pcIpTextBox.Text = result.PcIPAddr;
+                SN.Text = result.SN.ToString();
+            }
+
+            SwitchVisiblityAfter();
+        }
+
+        private void SwitchVisiblityAfter()
+        {
+            spin.Visibility = System.Windows.Visibility.Hidden;
+            Main.Visibility = System.Windows.Visibility.Visible;
+            Picture.Visibility = System.Windows.Visibility.Visible;
         }
 
         private int _numValue = 20;
@@ -160,7 +182,8 @@ namespace WanoControlCenter.Views
                 Mask = IPAddress.Parse(maskTextBox.Text),
                 Gateway = IPAddress.Parse(gatewayTextBox.Text),
                 HolidayControl = _numValue,
-                PcIPAddr = pcIpTextBox.Text
+                PcIPAddr = pcIpTextBox.Text,
+                SN = int.Parse(SN.Text)
             };
             return register;
         }

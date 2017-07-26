@@ -28,5 +28,8 @@ namespace WanoControlContracts.DataContracts.ControllerConfigure
 
         [DataMember]
         public string PcIPAddr { set; get; }
+
+        [DataMember]
+        public int SN { set; get; }
     }
 }

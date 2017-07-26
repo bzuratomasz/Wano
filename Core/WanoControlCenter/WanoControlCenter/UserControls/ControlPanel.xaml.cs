@@ -52,7 +52,6 @@ namespace WanoControlCenter.UserControls
             try
             {
                 CardsList.Items.Clear();
-                spin.Visibility = System.Windows.Visibility.Visible;
 
                 await Task.Run(() =>
                 {
