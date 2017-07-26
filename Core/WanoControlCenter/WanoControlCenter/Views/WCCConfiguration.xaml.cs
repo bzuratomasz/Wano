@@ -28,6 +28,31 @@ namespace WanoControlCenter.Views
             txtNumPort.Text = _numValuePort.ToString();
 
             _presenter = new WCCConfigurationPresenter(new Models.ServiceModel(), this);
+
+            InitializeControl();
+        }
+
+        private async void InitializeControl()
+        {
+            await Task.Run(() =>
+            {
+                var result = _presenter.GetController();
+
+                Dispatcher.Invoke(() =>
+                {
+                    BindElemetns(result);
+                });
+            });
+        }
+
+        private void BindElemetns(ResponseControllerConfigure result)
+        {
+            ipTextBox.Text = result.Ip.ToString();
+            txtNumSN.Text = result.SN.ToString();
+            maskTextBox.Text = result.Mask.ToString();
+            gatewayTextBox.Text = result.Gateway.ToString();
+            txtNumPort.Text = result.Port.ToString();
+            pcIpTextBox.Text = result.PcIPAddr;
         }
 
         private int _numValue = 20;

@@ -38,15 +38,6 @@ namespace WanoControlService.Contracts
         }
 
 
-        public void ResetToDefault()
-        {
-            if (_controllerService.Controller != null)
-            {
-                _controllerService.Controller.RestoreDefault();
-            }
-        }
-
-
         public List<RequestRegisterCard> GetCards()
         {
             return _registerCard.GetCards().ToList();
@@ -56,6 +47,25 @@ namespace WanoControlService.Contracts
         public bool UpdateCardsPermissions(List<List<Status>> Permissions, int cardId)
         {
             return _registerCard.UpdateCardsPermissions(Permissions, cardId);
+        }
+
+
+        public ResponseControllerConfigure GetController()
+        {
+            var inputCollection = _controllerService.GetController();
+
+            var resultCollection = new ResponseControllerConfigure()
+               {
+                   Ip = inputCollection.ip,
+                   Mask = inputCollection.mask,
+                   Port = inputCollection.port,
+                   PcIPAddr = inputCollection.pcIPAddr,
+                   HolidayControl = inputCollection.holidayControl,
+                   Gateway = inputCollection.gateway,
+                   SN = inputCollection.controllerSN
+               };
+
+            return resultCollection;
         }
     }
 }

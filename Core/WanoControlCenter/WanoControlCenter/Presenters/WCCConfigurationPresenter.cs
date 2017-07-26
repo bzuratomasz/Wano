@@ -21,5 +21,10 @@ namespace WanoControlCenter.Presenters
         {
             _model.Register(conf);
         }
+
+        public ResponseControllerConfigure GetController()
+        {
+            return _model.GetController();
+        }
     }
 }

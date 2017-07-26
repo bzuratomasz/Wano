@@ -6,6 +6,6 @@ namespace WCCInfrastructure.Services.ControllerService
     public interface IControllerService
     {
         bool ConnectToController(RequestControllerConfigure request);
-        wgMjControllerConfigure Controller { get; }
+        wgMjControllerConfigure GetController();
     }
 }

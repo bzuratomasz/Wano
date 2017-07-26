@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContracts\ControllerConfigure\RequestControllerConfigure.cs" />
+    <Compile Include="DataContracts\ControllerConfigure\ResponseControllerConfigure.cs" />
     <Compile Include="DataContracts\RegisterCard\RequestRegisterCard.cs" />
     <Compile Include="DataContracts\RegisterCard\ResponseRegisterCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -136,5 +136,29 @@ namespace WanoControlCenter.Models
 
             return result;
         }
+
+        public ResponseControllerConfigure GetController()
+        {
+
+            ResponseControllerConfigure result = new ResponseControllerConfigure();
+
+            IControllerConfigure client = null;
+
+            try
+            {
+                client = myChannelFactory.CreateChannel();
+                result = client.GetController();
+                ((ICommunicationObject)client).Close();
+            }
+            catch
+            {
+                if (client != null)
+                {
+                    ((ICommunicationObject)client).Abort();
+                }
+            }
+
+            return result;
+        }
     }
 }

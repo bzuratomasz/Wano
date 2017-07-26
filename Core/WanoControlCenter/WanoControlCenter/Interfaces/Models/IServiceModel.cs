@@ -15,5 +15,6 @@ namespace WanoControlCenter.Interfaces.Models
         void Register(RequestControllerConfigure controller);
         List<RequestRegisterCard> GetCards();
         bool UpdateCardsPermissions(List<List<Status>> permissions, int cardId);
+        ResponseControllerConfigure GetController();
     }
 }

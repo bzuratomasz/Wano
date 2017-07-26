@@ -18,6 +18,6 @@ namespace WanoControlContracts.ServiceContracts.ControllerConfigure
 
         [WebGet(ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
-        void ResetToDefault();
+        ResponseControllerConfigure GetController();
     }
 }
