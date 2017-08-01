@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8095/WCC?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.RegisterCard" />
+  <xs:import schemaLocation="http://localhost:8095/WCC?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCCCommon.Models" />
+  <xs:import schemaLocation="http://localhost:8095/WCC?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.ControllerConfigure" />
+  <xs:element name="RegisterCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.RegisterCard" minOccurs="0" name="card" nillable="true" type="q1:RequestRegisterCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.RegisterCard" minOccurs="0" name="RegisterCardResult" nillable="true" type="q2:ResponseRegisterCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetExpiredDateForCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardId" type="xs:int" />
+        <xs:element minOccurs="0" name="expiredDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetExpiredDateForCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetExpiredDateForCardResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCards">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.RegisterCard" minOccurs="0" name="GetCardsResult" nillable="true" type="q3:ArrayOfRequestRegisterCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCardsPermissions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCCCommon.Models" minOccurs="0" name="Permissions" nillable="true" type="q4:ArrayOfArrayOfStatus" />
+        <xs:element minOccurs="0" name="cardId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCardsPermissionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateCardsPermissionsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectToController">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.ControllerConfigure" minOccurs="0" name="controller" nillable="true" type="q5:RequestControllerConfigure" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectToControllerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConnectToControllerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetController">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetControllerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WanoControlContracts.DataContracts.ControllerConfigure" minOccurs="0" name="GetControllerResult" nillable="true" type="q6:ResponseControllerConfigure" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
