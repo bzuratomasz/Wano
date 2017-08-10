@@ -128,6 +128,8 @@
     <Compile Include="Presenters\WCCConfigurationPresenter.cs" />
     <Compile Include="Presenters\WCCMainPresenter.cs" />
     <Compile Include="Presenters\WCCSupervisorPresenter.cs" />
+    <Compile Include="Repositories\Interfaces\ISupervisorUiRepository.cs" />
+    <Compile Include="Repositories\SupervisorUiRepository.cs" />
     <Compile Include="Views\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>

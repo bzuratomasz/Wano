@@ -13,6 +13,7 @@ using WCCCommon.Models;
 using WanoControlCenter.Models.Schemas;
 using WanoControlCenter.Interfaces.Presenters;
 using System;
+using WanoControlCenter.Repositories.Interfaces;
 
 namespace WanoControlCenter.Views
 {

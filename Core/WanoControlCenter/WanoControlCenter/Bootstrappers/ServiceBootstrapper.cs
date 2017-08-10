@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WanoControlCenter.Models;
+using WanoControlCenter.Repositories;
 
 namespace WanoControlCenter.Bootstrappers
 {
@@ -15,7 +16,10 @@ namespace WanoControlCenter.Bootstrappers
             builder.RegisterType<ServiceModel>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
-                  
+
+            builder.RegisterType<SupervisorUiRepository>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

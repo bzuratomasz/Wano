@@ -13,15 +13,6 @@ namespace WanoControlService.Services.ControllerService
 
         public bool ConnectToController(RequestControllerConfigure request)
         {
-            //wgMjControllerConfigure conf = new wgMjControllerConfigure()
-            //{
-            //    gateway = request.Gateway,
-            //    holidayControl = request.HolidayControl,
-            //    ip = request.Ip,
-            //    mask = request.Mask,
-            //    pcIPAddr = request.PcIPAddr,
-            //    port = request.Port
-            //};
 
             _control = new wgMjController() 
             {

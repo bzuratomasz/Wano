@@ -8,16 +8,13 @@ using WanoControlCenter.Controls;
 using System.Windows.Media;
 using WCCCommon.Models;
 using System;
+using WanoControlCenter.Repositories.Interfaces;
+using WanoControlCenter.Repositories;
 
 namespace WanoControlCenter.Models
 {
     public class SupervisorUiModel
     {
-        private readonly object _syncLocker = new object();
-
-        private List<ControlEntity> _context = new List<ControlEntity>();
-        private List<GroupBox> _groupBoxes = new List<GroupBox>();
-
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public SupervisorUiModel()
@@ -25,32 +22,29 @@ namespace WanoControlCenter.Models
 
         }
 
-        public void AddToContext(ControlEntity item)
+        public void AddToContext(ControlEntity item) 
         {
-            lock (_syncLocker)
-            {
-                _context.Add(item);
-            }
+            SupervisorUiRepository.Instance.AddToContext(item);
         }
 
         public List<ControlEntity> GetContext() 
         {
-            return _context;
+            return SupervisorUiRepository.Instance.GetContext();
         }
 
         public void AddGroupBox(GroupBox item) 
         {
-            _groupBoxes.Add(item);
+            SupervisorUiRepository.Instance.AddGroupBox(item);
         }
 
         public List<GroupBox> GetGroupBoxes() 
         {
-            return _groupBoxes;
+            return SupervisorUiRepository.Instance.GetGroupBoxes();
         }
 
         public void ClearButtonsBackground()
         {
-            var result = _context.Select(x => x.customButton);
+            var result = GetContext().Select(x => x.customButton);
             foreach (var item in result)
             {
                 ((ButtonCustom)item).Background = Brushes.LightGray;
