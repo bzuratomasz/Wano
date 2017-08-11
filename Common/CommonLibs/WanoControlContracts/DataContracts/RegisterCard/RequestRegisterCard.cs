@@ -11,6 +11,7 @@ namespace WanoControlContracts.DataContracts.RegisterCard
     [DataContract]
     public class RequestRegisterCard
     {
+        //Automapper
         [DataMember]
         public int CardId { get; set; }
 

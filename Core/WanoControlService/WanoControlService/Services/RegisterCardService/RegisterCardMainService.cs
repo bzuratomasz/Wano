@@ -15,6 +15,7 @@ namespace WanoControlService.Services.RegisterCardService
         private readonly IUserActivityRepository _activity;
         private readonly ISRDataService _service;
 
+        //Register strategy
         private RegisterContextCardService _context = new RegisterContextCardService(new RegisterH1CardService());
 
         public RegisterCardMainService(ICardsRepository repository, IUserActivityRepository activity, ISRDataService service)

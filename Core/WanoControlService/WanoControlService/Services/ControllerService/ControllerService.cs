@@ -29,6 +29,7 @@ namespace WanoControlService.Services.ControllerService
             return true;
         }
 
+        //Wrapper i automapper
         public wgMjControllerConfigure GetController()
         {
             return Search();

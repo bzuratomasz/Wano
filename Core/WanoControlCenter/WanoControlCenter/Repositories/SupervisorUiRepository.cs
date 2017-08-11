@@ -23,7 +23,7 @@ namespace WanoControlCenter.Repositories
                 return _instance;
             }
         }
-
+        //Threadsave singleton, prywatny konstruktorofnfv
         private readonly object _syncLocker = new object();
 
         private List<ControlEntity> _context = new List<ControlEntity>();

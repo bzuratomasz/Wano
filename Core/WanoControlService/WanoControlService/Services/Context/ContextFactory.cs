@@ -19,6 +19,7 @@ namespace WanoControlService.Services.Context
             _conf = conf;
         }
 
+        //Wycieki
         public IMainDbContext DbContext
         {
             get
